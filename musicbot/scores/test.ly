@@ -2,32 +2,26 @@
 {
 
 <<
-    \new Voice = "melody" {
+    \new Voice {
     ais'4.
         <<
         {
-        \voiceOne
-        g4 f4
+        <<g'4>> <<f'4>>
         }
         \new Voice {
-            \voiceTwo
-            d16
+            d'16
             }
             >>
-        \oneVoice
-        e4
-    a4
+        e'4
+    a'4
         <<
         {
-        \voiceOne
-        g f
+        g' f'
         }
         \new Voice {
-            \voiceTwo
-            d2
+            d'2
             }
         >>
-        \oneVoice
         e4
 }
 >> 
