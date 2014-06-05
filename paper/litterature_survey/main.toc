@@ -1,0 +1,12 @@
+\contentsline {chapter}{Abstract}{i}{dummy.1}
+\vspace {1em}
+\contentsline {chapter}{Contents}{ii}{dummy.2}
+\contentsline {chapter}{List of Figures}{iii}{dummy.4}
+\contentsline {chapter}{\numberline {1}Related Work}{1}{chapter.6}
+\contentsline {section}{\numberline {1.1}Overview}{1}{section.7}
+\contentsline {section}{\numberline {1.2}Recurrent Neural Network}{2}{section.8}
+\contentsline {section}{\numberline {1.3}Hessian Free Optimization}{4}{section.10}
+\contentsline {section}{\numberline {1.4}Text and Polyphonic Music Generation using Recurrent Neural Networks}{6}{section.12}
+\vspace {2em}
+\vspace {2em}
+\contentsline {chapter}{Bibliography}{9}{dummy.15}

@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: main.aux
+The style file: unsrtnat.bst
+Database file #1: Bibliography.bib
+Warning--can't use both volume and number fields in krizhevsky2012imagenet
+You've used 13 entries,
+            2481 wiz_defined-function locations,
+            624 strings with 6544 characters,
+and the built_in function-call counts, 5755 in all, are:
+= -- 527
+> -- 205
+< -- 16
++ -- 84
+- -- 58
+* -- 371
+:= -- 817
+add.period$ -- 41
+call.type$ -- 13
+change.case$ -- 26
+chr.to.int$ -- 13
+cite$ -- 14
+duplicate$ -- 339
+empty$ -- 558
+format.name$ -- 75
+if$ -- 1309
+int.to.chr$ -- 1
+int.to.str$ -- 14
+missing$ -- 13
+newline$ -- 73
+num.names$ -- 39
+pop$ -- 133
+preamble$ -- 1
+purify$ -- 13
+quote$ -- 0
+skip$ -- 241
+stack$ -- 0
+substring$ -- 322
+swap$ -- 110
+text.length$ -- 10
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 91
+warning$ -- 1
+while$ -- 50
+width$ -- 0
+write$ -- 177
+(There was 1 warning)
