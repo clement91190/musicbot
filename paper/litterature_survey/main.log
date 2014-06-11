@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.1.16)  19 MAY 2014 15:17
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  11 JUN 2014 16:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **main.tex
 (./main.tex
 LaTeX2e <2011/06/27>
-Babel <3.9f> and hyphenation patterns for 78 languages loaded.
+Babel <3.9h> and hyphenation patterns for 78 languages loaded.
 (./Thesis.cls
 Document Class: Thesis 2007/22/02 v1.0 LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/book.cls
@@ -526,27 +526,27 @@ Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 
 ***
 *** This is a patch for listings 1.3, but you're using
-*** version 1.5.
+*** version 1.5b.
 ***
 *** Patch file not loaded.
 ***
 
 ) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2013/07/10 1.5 (Carsten Heinz)
+File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
 \c@lstnumber=\count119
 \lst@skipnumbers=\count120
 \lst@framebox=\box30
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
-File: listings.cfg 2013/06/27 1.5pre1 listings configuration
+File: listings.cfg 2013/08/26 1.5b listings configuration
 ))
-Package: listings 2013/07/10 1.5 (Carsten Heinz)
+Package: listings 2013/08/26 1.5b (Carsten Heinz)
 
 (./lstpatch.sty
 
 ***
 *** This is a patch for listings 1.3, but you're using
-*** version 1.5.
+*** version 1.5b.
 ***
  *** Patch file not loaded.
 ***
@@ -633,7 +633,7 @@ Package hyperref Info: Bookmarks ON on input line 4688.
 
 (/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip11
-Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5041.
 \XeTeXLinkMargin=\dimen146
@@ -814,7 +814,7 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 79.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<Figures/Logo.jpg, id=40, 280.04625pt x 301.125pt>
+<Figures/Logo.jpg, id=44, 280.04625pt x 301.125pt>
 File: Figures/Logo.jpg Graphic file (type jpg)
  <use Figures/Logo.jpg>
 Package pdftex.def Info: Figures/Logo.jpg used on input line 92.
@@ -863,49 +863,69 @@ Chapter 1.
 
 
 
-] [2] <Figures/RNN.png, id=107, 1130.2225pt x 376.40625pt>
+] [2] <Figures/RNN.png, id=116, 1130.2225pt x 376.40625pt>
 File: Figures/RNN.png Graphic file (type png)
 
 <use Figures/RNN.png>
 Package pdftex.def Info: Figures/RNN.png used on input line 53.
 (pdftex.def)             Requested size: 339.06937pt x 112.92273pt.
  [3 <./Figures/RNN.png (PNG copy)>]
-<Figures/gradient_ellipse.jpg, id=118, 277.035pt x 183.68625pt>
+<Figures/gradient_ellipse.jpg, id=127, 277.035pt x 183.68625pt>
 File: Figures/gradient_ellipse.jpg Graphic file (type jpg)
 
 <use Figures/gradient_ellipse.jpg>
 Package pdftex.def Info: Figures/gradient_ellipse.jpg used on input line 73.
 (pdftex.def)             Requested size: 193.92317pt x 128.57947pt.
  [4] [5 <./Figures/gradient_ellipse.jpg>]
-[6] <Figures/RTRBM.png, id=145, 953.5625pt x 331.2375pt>
+[6] <Figures/RTRBM.png, id=154, 953.5625pt x 331.2375pt>
 File: Figures/RTRBM.png Graphic file (type png)
 
 <use Figures/RTRBM.png>
 Package pdftex.def Info: Figures/RTRBM.png used on input line 108.
 (pdftex.def)             Requested size: 381.41824pt x 132.49265pt.
  [7 <./Figures/RTRBM.png (PNG copy)>]
-<Figures/RNNRBM.png, id=153, 388.45125pt x 214.8025pt>
+<Figures/RNNRBM.png, id=163, 388.45125pt x 214.8025pt>
 File: Figures/RNNRBM.png Graphic file (type png)
 
 <use Figures/RNNRBM.png>
 Package pdftex.def Info: Figures/RNNRBM.png used on input line 126.
 (pdftex.def)             Requested size: 233.07254pt x 128.88249pt.
-) [8 <./Figures/RNNRBM.png>]
+
+<Figures/calculation_cd.png, id=164, 740.7675pt x 353.32pt>
+File: Figures/calculation_cd.png Graphic file (type png)
+
+<use Figures/calculation_cd.png>
+Package pdftex.def Info: Figures/calculation_cd.png used on input line 145.
+(pdftex.def)             Requested size: 444.46393pt x 211.99364pt.
+
+Overfull \hbox (26.99086pt too wide) in paragraph at lines 145--147
+ [][] 
+ []
+
+[8 <./Figures/RNNRBM.png>]
+<Figures/gibbs_sampling.png, id=169, 226.8475pt x 126.4725pt>
+File: Figures/gibbs_sampling.png Graphic file (type png)
+
+<use Figures/gibbs_sampling.png>
+Package pdftex.def Info: Figures/gibbs_sampling.png used on input line 157.
+(pdftex.def)             Requested size: 136.10954pt x 75.88408pt.
+) [9 <./Figures/calculation_cd.png (PNG copy)> <./Figures/gibbs_sampling.png>] 
+[10]
 ------------------------------------------------------------------------------
  Bibliography
 ------------------------------------------------------------------------------
-(./main.bbl [9
+(./main.bbl [11
 
 
 ])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 288.
- [10]
+ [12]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 288.
  (./main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 288.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 288.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 627919F757C405ECB0201B00E51F7F02;1468.
+(rerunfilecheck)             Checksum: 2FD94FB6A8515F2505B857FBBF3B86EF;1908.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -913,10 +933,10 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 288.
  ) 
 Here is how much of TeX's memory you used:
- 13416 strings out of 493307
- 188298 string characters out of 6139905
- 261528 words of memory out of 5000000
- 16627 multiletter control sequences out of 15000+600000
+ 13433 strings out of 493304
+ 188673 string characters out of 6139871
+ 261881 words of memory out of 5000000
+ 16640 multiletter control sequences out of 15000+600000
  13256 words of font info for 48 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  49i,12n,45p,1990b,452s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -932,10 +952,10 @@ c/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (14 pages, 365210 bytes).
+Output written on main.pdf (16 pages, 406582 bytes).
 PDF statistics:
- 224 PDF objects out of 1000 (max. 8388607)
- 188 compressed objects within 2 object streams
- 44 named destinations out of 1000 (max. 500000)
- 98 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 247 PDF objects out of 1000 (max. 8388607)
+ 205 compressed objects within 3 object streams
+ 49 named destinations out of 1000 (max. 500000)
+ 116 words of extra memory for PDF output out of 10000 (max. 10000000)
 

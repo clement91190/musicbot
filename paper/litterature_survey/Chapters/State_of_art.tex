@@ -130,3 +130,40 @@ $$
 \end{figure}
 
 This model was applied to the music score datasets and achieved the best results. However the model were not used for music generation specifically and this will be the focus of this project.
+
+\section{Training Restricted Boltzman Machines unsing constrastive divergence.}
+
+
+    Training a RBM using stochastic gradient descent requires to evaluate the log-likelihood gradient. However, it is difficult to determine the gradient analytically, and it becomes infeaseable even for a small RBM as it involves the computation of an expectation term over all input layer configuration :
+
+From the Energy function of the RBM :
+$$ E(v, h) = -a ^\top v - b^\top h - h^\top W v$$
+we can conduct the following calculation 
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.6]{Figures/calculation_cd.png}
+    \rule{35em}{0.5pt}
+    \caption[CD calculaiton]{CD calculation}
+    \label{fig:calc_cd}
+\end{figure}
+
+So in the end, evaluating the negative log likelihood gradient of P consist of 2 terms : a positive contribution that lower the energy of the observed data, and a negative term that increase the energy of all the inputs.
+
+In order to evaluate the gradient, Gibbs sampling is used in place of the expectation calculation. Gibbs sampling consist of running a Markov chain, using Gibbs step as the transition step. 
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.6]{Figures/gibbs_sampling.png}
+    \rule{35em}{0.5pt}
+    \caption[Gibbs sampling]{Gibbs Sampling}
+    \label{fig:gibbs_sampling}
+\end{figure}
+
+Gibbs step : 
+
+$$h^{(n+1)} \sim sigm(W^\top v^{(n)} + b )$$
+$$v^{(n+1)} \sim sigm(W h^{(n+1)} + a )$$
+
+In practice, the convergence of the sampling is not necessary and only k-steps are used (for Contrastive Divergence (CD-k)), and even that taking $k=1$ is works well.
+In order to train a RBM as part of a bigger model (RTRBM, RNN-RBM), Gibbs sampling is used to create a specific instance of the RBM for which it is possible to obtain a gradient (using the samples instead of the expectation), it is then possible to use this gradient as part of the calculation for a stochastic gradient descent on the whole model.
