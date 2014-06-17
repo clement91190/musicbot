@@ -10,7 +10,8 @@ debugging :-s
 
 
 # get data
-test_file = 'test/midifiles/minimal-cubase-type0.mid'
+#test_file = 'test/midifiles/minimal-cubase-type0.mid'
+test_file = 'test_score.midi'
 
 # do parsing
 from MidiInFile import MidiInFile
