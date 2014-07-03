@@ -1,10 +1,14 @@
 import numpy as np
 import pygraphviz as pgv
+from sklearn.base import BaseEstimator
 
 
-class SGRNN:
-    def __init__(self):
-        pass
+class SGRNN(BaseEstimator):
+    def __init__(self, n_in=5, n_out=5, activation='tanh',output_type='real'):
+        self.n_in = n_in
+        self.n_out = n_out
+        self.activation = activation
+        self.output_type = output_type
 
     def set_weights(self, Whh, Wih, Who, bh, bi):
         self.Whh = Whh
