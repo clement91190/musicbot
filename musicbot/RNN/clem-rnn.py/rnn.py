@@ -322,8 +322,7 @@ class ClemRNNHfOptim(BaseEstimator):
         self.__setstate__(state)
         file.close()
 
-    def fit(self, X_train, Y_train, X_test=None, Y_test=None,
-            validation_frequency=100):
+    def fit(self, X_train, Y_train):
         """ Fit model
 
         Pass in X_test, Y_test to compute test error and report during
@@ -332,26 +331,15 @@ class ClemRNNHfOptim(BaseEstimator):
         X_train : ndarray (n_seq x n_steps x n_in)
         Y_train : ndarray (n_seq x n_steps x n_out)
 
-        validation_frequency : int
-            in terms of number of sequences (or number of weight updates)
         """
-        #if X_test is not None:
-        #    assert(Y_test is not None)
-        #    self.interactive = True
-        #    test_set_x, test_set_y = self.shared_dataset((X_test, Y_test))
-        #else:
-        #    self.interactive = False
-#
-#        train_set_x, train_set_y = self.shared_dataset((X_train, Y_train))
-#
-#        n_train = train_set_x.get_value(borrow=True).shape[0]
-#        if self.interactive:
-#            n_test = test_set_x.get_value(borrow=True).shape[0]
-
         # SequenceDataset wants a list of sequences
         # this allows them to be different lengths, but here they're not
         seq = [i for i in X_train]
         targets = [i for i in Y_train]
+
+        ######################
+        # BUILD ACTUAL MODEL #
+        ######################
 
         #TODO : batch_size in parameters.
         gradient_dataset = SequenceDataset(
@@ -359,40 +347,9 @@ class ClemRNNHfOptim(BaseEstimator):
         cg_dataset = SequenceDataset(
             [seq, targets], batch_size=None, number_batches=20)
 
-        ######################
-        # BUILD ACTUAL MODEL #
-        ######################
-
         cost = self.rnn.loss(self.y) \
             + self.L1_reg * self.rnn.L1 \
             + self.L2_reg * self.rnn.L2_sqr
-
-        #compute_train_error = theano.function(
-        #    inputs=[index, ],
-        #    outputs=self.rnn.loss(self.y),
-        #    givens={
-        #        self.x: train_set_x[index],
-        #        self.y: train_set_y[index]},
-        #    mode=mode)
-
-        #if self.interactive:
-        #    compute_test_error = theano.function(inputs=[index, ],
-        #                outputs=self.rnn.loss(self.y),
-        #                givens={
-        #                    self.x: test_set_x[index],
-        #                    self.y: test_set_y[index]},
-        #                mode=mode)
-
-       # compiling a Theano function `train_model` that returns the
-        # cost, but in the same time updates the parameter of the
-        # model based on the rules defined in `updates`
-        #train_model = theano.function(inputs=[index, l_r, mom],
-        #                              outputs=cost,
-        #                              updates=updates,
-        #                              givens={
-        #                                  self.x: train_set_x[index],
-        #                                  self.y: train_set_y[index]},
-        #                                  mode=mode)
 
         opt = hf_optimizer(
             p=self.rnn.params, inputs=[self.x, self.y],
