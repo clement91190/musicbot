@@ -29,9 +29,13 @@ class RNN(object):
     binary : binary output units, use cross-entropy error
     softmax : single softmax out, use cross-entropy error
     """
+
     def __init__(self, input, n_in, n_hidden, n_out, activation=T.tanh,
                  output_type='real', use_symbolic_softmax=False):
 
+        self.n_hidden = n_hidden
+        self.n_out = n_out
+        self.n_in = n_in
         self.input = input
         self.activation = activation
         self.output_type = output_type
@@ -48,36 +52,41 @@ class RNN(object):
         else:
             self.softmax = T.nnet.softmax
 
+        self.init_weights()
+        self.init_structure()
+ 
+    def init_weights(self):
         # recurrent weights as a shared variable
-        W_init = np.asarray(np.random.uniform(size=(n_hidden, n_hidden),
+        W_init = np.asarray(np.random.uniform(size=(self.n_hidden, self.n_hidden),
                                               low=-.01, high=.01),
                                               dtype=theano.config.floatX)
         self.W = theano.shared(value=W_init, name='W')
         # input to hidden layer weights
-        W_in_init = np.asarray(np.random.uniform(size=(n_in, n_hidden),
+        W_in_init = np.asarray(np.random.uniform(size=(self.n_in, self.n_hidden),
                                                  low=-.01, high=.01),
                                                  dtype=theano.config.floatX)
         self.W_in = theano.shared(value=W_in_init, name='W_in')
 
         # hidden to output layer weights
-        W_out_init = np.asarray(np.random.uniform(size=(n_hidden, n_out),
+        W_out_init = np.asarray(np.random.uniform(size=(self.n_hidden, self.n_out),
                                                   low=-.01, high=.01),
                                                   dtype=theano.config.floatX)
         self.W_out = theano.shared(value=W_out_init, name='W_out')
 
-        h0_init = np.zeros((n_hidden,), dtype=theano.config.floatX)
+        h0_init = np.zeros((self.n_hidden,), dtype=theano.config.floatX)
         self.h0 = theano.shared(value=h0_init, name='h0')
 
-        bh_init = np.zeros((n_hidden,), dtype=theano.config.floatX)
+        bh_init = np.zeros((self.n_hidden,), dtype=theano.config.floatX)
         self.bh = theano.shared(value=bh_init, name='bh')
 
-        by_init = np.zeros((n_out,), dtype=theano.config.floatX)
+        by_init = np.zeros((self.n_out,), dtype=theano.config.floatX)
         self.by = theano.shared(value=by_init, name='by')
 
         self.params = [self.W, self.W_in, self.W_out, self.h0,
                        self.bh, self.by]
-
-        # for every parameter, we maintain it's last update
+   
+    def init_structure(self):
+            # for every parameter, we maintain it's last update
         # the idea here is to use "momentum"
         # keep moving mostly in the same direction
         self.updates = {}

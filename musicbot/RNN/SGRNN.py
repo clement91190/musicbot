@@ -1,9 +1,11 @@
 import numpy as np
 import random
 import theano
+import theano.tensor as T
 import pygraphviz as pgv
 from sklearn.base import BaseEstimator
 import networkx as nx
+from rnn import RNN
 
 
 class WeightsHandler():
@@ -96,16 +98,59 @@ class WeightsHandler():
         #TODO
         pass
 
+    def evolution(self):
+        self.clean_small_weights()
+        self.add_weights()
+        self.add_complex_node()
+
+    def define_v_Whh(self):
+        pass
+
+    def to_theano_params(self):
+        """ return a tuple (list of parameters (for Whh -> vector of non-zero value), list of theano shared variables: [Wih, Whh, Whh, bh, ho, hy] ) """
+        W_in = theano.shared(value=self.W_in, name='W_in')
+        W_out = theano.shared(value=self.W_out, name='W_out')
+        h0 = theano.shared(value=self.h0, name='h0')
+        bh = theano.shared(value=self.bh, name='bh')
+        by = theano.shared(value=self.by, name='by')
+
+        v_Whh = theano.shared(value=self.v_Whh, name='v_Whh')
+        
+#todo define W as a function of v_Whh
+        Whh = None
+        params = [W_in, W_out, v_Whh, h0, bh, by]
+        weights = [W_in, W_out, Whh, h0, bh, by]
+
+        return (params, weights) 
 
 
+class SGRNN(RNN):
+    """ redefine the constructor of RNN to take a WeightsHandler as parameter. """
+    def __init__(self, input, weight_handler, activation=T.tanh,
+                 output_type='real', use_symbolic_softmax=False):
+
+        self.input = input
+        self.activation = activation
+        self.output_type = output_type
+
+        # when using HF, SoftmaxGrad.grad is not implemented
+        # use a symbolic softmax which is slightly slower than T.nnet.softmax
+        # See: http://groups.google.com/group/theano-dev/browse_thread/
+        # thread/3930bd5a6a67d27a
+        if use_symbolic_softmax:
+            def symbolic_softmax(x):
+                e = T.exp(x)
+                return e / T.sum(e, axis=1).dimshuffle(0, 'x')
+            self.softmax = symbolic_softmax
+        else:
+            self.softmax = T.nnet.softmax
+
+        self.params, weights = self.weight_handler.to_theano_params()
+        self.W_in, self.W_out, self.W, self.h0, self.bh, self.by = weights
+        self.init_structure()
         
 
-
-
-
-
-
-class SGRNN(BaseEstimator):
+class GraphDraw(BaseEstimator):
     def __init__(self, n_in=5, n_out=5, activation='tanh',output_type='real'):
         self.n_in = n_in
         self.n_out = n_out
