@@ -205,16 +205,16 @@ class RNNHfOptim(BaseEstimator):
         print "building model..."
 
         #TODO : batch_size in parameters.
-        gradient_dataset = SequenceDataset(
+        self.gradient_dataset = SequenceDataset(
             [seq, targets], batch_size=None, number_batches=self.gd_number_batches)
-        cg_dataset = SequenceDataset(
+        self.cg_dataset = SequenceDataset(
             [seq, targets], batch_size=None, number_batches=self.cg_number_batches)
 
         cost = self.rnn.loss(self.y) \
             + self.L1_reg * self.rnn.L1 \
             + self.L2_reg * self.rnn.L2_sqr
 
-        opt = hf_optimizer(
+        self.opt = hf_optimizer(
             p=self.rnn.params, inputs=[self.x, self.y],
             s=self.rnn.y_pred,
             costs=[cost], h=self.rnn.h)
@@ -224,8 +224,15 @@ class RNNHfOptim(BaseEstimator):
         ###############
         print "starting training ..."
 
-        opt.train(gradient_dataset, cg_dataset, num_updates=self.n_updates)
+        self.train()
 
+    def train(self):
+        self.opt.train(self.gradient_dataset, self.cg_dataset, num_updates=self.n_updates)
+
+    def continue_training(self, n_updates):
+        self.n_updates = n_updates
+        self.train()
+        
 
 def test_real():
     """ Test RNN with real-valued outputs. """
