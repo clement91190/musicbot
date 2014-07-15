@@ -104,7 +104,14 @@ class WeightsHandler():
         self.add_complex_node()
 
     def define_v_Whh(self):
-        pass
+        self.location = []
+        self.v_Whh = []
+        for i in range(self.n_hidden):
+            for j in range(self.n_hidden):
+                val = self.Whh[i, j]
+                if val != 0:
+                    self.location.append(i, j)
+                    self.v_Whh.append(val)
 
     def to_theano_params(self):
         """ return a tuple (list of parameters (for Whh -> vector of non-zero value), list of theano shared variables: [Wih, Whh, Whh, bh, ho, hy] ) """
@@ -114,14 +121,26 @@ class WeightsHandler():
         bh = theano.shared(value=self.bh, name='bh')
         by = theano.shared(value=self.by, name='by')
 
-        v_Whh = theano.shared(value=self.v_Whh, name='v_Whh')
+        values = theano.shared(value=self.v_Whh, name='v_Whh')
+        location = theano.shared(value=self.location, name='location')
+        output_model = theano.shared(value=np.zeros((self.n_hidden, self.n_hidden)), name='outputmodel')
         
-#todo define W as a function of v_Whh
-        Whh = None
-        params = [W_in, W_out, v_Whh, h0, bh, by]
+        def set_value_at_position(a_location, a_value, output_model):
+            zeros_subtensor = output_model[a_location[0], a_location[1]]
+            return T.set_subtensor(zeros_subtensor, a_value)
+
+        outputs_info = T.zeros_like(output_model)
+        result, updates = theano.scan(
+            fn=set_value_at_position,
+            outputs_info=outputs_info,
+            sequences=[location, values])
+
+        Whh = result[-1]
+
+        params = [W_in, W_out, values, h0, bh, by]
         weights = [W_in, W_out, Whh, h0, bh, by]
 
-        return (params, weights) 
+        (params, weights) 
 
 
 class SGRNN(RNN):

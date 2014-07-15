@@ -9,6 +9,7 @@ import datetime
 import cPickle as pickle
 from theano_hf.hf import hf_optimizer, SequenceDataset
 from rnn import RNN
+from SGRNN import SGRNN
 
 
 import matplotlib.pyplot as plt
@@ -22,7 +23,7 @@ class RNNHfOptim(BaseEstimator):
     def __init__(self, n_in=5, n_hidden=50, n_out=5, 
                  L1_reg=0.00, L2_reg=0.00,
                  activation='tanh', output_type='real',
-                 use_symbolic_softmax=False):
+                 use_symbolic_softmax=False, model="SGRNN", weight_handler=None):
         self.n_in = int(n_in)
         self.n_hidden = int(n_hidden)
         self.n_out = int(n_out)
@@ -31,6 +32,8 @@ class RNNHfOptim(BaseEstimator):
         self.activation = activation
         self.output_type = output_type
         self.use_symbolic_softmax = use_symbolic_softmax
+        self.weight_handler = weight_handler
+        self.model = model
         
         self.ready()
         self.tune_optimizer()
@@ -85,11 +88,21 @@ class RNNHfOptim(BaseEstimator):
         else:
             raise NotImplementedError
 
-        self.rnn = RNN(
-            input=self.x, n_in=self.n_in,
-            n_hidden=self.n_hidden, n_out=self.n_out,
-            activation=activation, output_type=self.output_type,
-            use_symbolic_softmax=self.use_symbolic_softmax)
+        if self.model == "SGRNN":
+            if self.weight_handler is None:
+                raise NotImplementedError("you need to provide a weighthandler")
+            else:
+                self.rnn = SGRNN(
+                    input=self.x, weight_handler=self.weight_handler,
+                    activation=activation, output_type=self.output_type,
+                    use_symbolic_softmax=self.use_symbolic_softmax)
+
+        else:
+            self.rnn = RNN(
+                input=self.x, n_in=self.n_in,
+                n_hidden=self.n_hidden, n_out=self.n_out,
+                activation=activation, output_type=self.output_type,
+                use_symbolic_softmax=self.use_symbolic_softmax)
 
         if self.output_type == 'real':
             self.predict = theano.function(inputs=[self.x, ],
