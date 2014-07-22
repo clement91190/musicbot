@@ -98,8 +98,12 @@ class RNN(object):
         # recurrent function (using tanh activation function) and linear output
         # activation function
         def step(x_t, h_tm1):
-            h_t = self.activation(T.dot(x_t, self.W_in) + \
-                                  T.dot(h_tm1, self.W) + self.bh)
+            if self.mask is not None:
+                h_t = self.activation(
+                    T.dot(x_t, self.W_in) + T.dot(h_tm1, self.W * self.mask) + self.bh)
+            else:
+                h_t = self.activation(
+                    T.dot(x_t, self.W_in) + T.dot(h_tm1, self.W) + self.bh)
             y_t = T.dot(h_t, self.W_out) + self.by
             return h_t, y_t
 

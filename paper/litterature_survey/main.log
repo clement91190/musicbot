@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  11 JUN 2014 16:55
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  17 JUL 2014 12:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -814,7 +814,7 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 79.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<Figures/Logo.jpg, id=44, 280.04625pt x 301.125pt>
+<Figures/Logo.jpg, id=68, 280.04625pt x 301.125pt>
 File: Figures/Logo.jpg Graphic file (type jpg)
  <use Figures/Logo.jpg>
 Package pdftex.def Info: Figures/Logo.jpg used on input line 92.
@@ -863,35 +863,35 @@ Chapter 1.
 
 
 
-] [2] <Figures/RNN.png, id=116, 1130.2225pt x 376.40625pt>
+] [2] <Figures/RNN.png, id=148, 1130.2225pt x 376.40625pt>
 File: Figures/RNN.png Graphic file (type png)
 
 <use Figures/RNN.png>
 Package pdftex.def Info: Figures/RNN.png used on input line 53.
 (pdftex.def)             Requested size: 339.06937pt x 112.92273pt.
  [3 <./Figures/RNN.png (PNG copy)>]
-<Figures/gradient_ellipse.jpg, id=127, 277.035pt x 183.68625pt>
+<Figures/gradient_ellipse.jpg, id=159, 277.035pt x 183.68625pt>
 File: Figures/gradient_ellipse.jpg Graphic file (type jpg)
 
 <use Figures/gradient_ellipse.jpg>
 Package pdftex.def Info: Figures/gradient_ellipse.jpg used on input line 73.
 (pdftex.def)             Requested size: 193.92317pt x 128.57947pt.
  [4] [5 <./Figures/gradient_ellipse.jpg>]
-[6] <Figures/RTRBM.png, id=154, 953.5625pt x 331.2375pt>
+[6] <Figures/RTRBM.png, id=187, 953.5625pt x 331.2375pt>
 File: Figures/RTRBM.png Graphic file (type png)
 
 <use Figures/RTRBM.png>
 Package pdftex.def Info: Figures/RTRBM.png used on input line 108.
 (pdftex.def)             Requested size: 381.41824pt x 132.49265pt.
  [7 <./Figures/RTRBM.png (PNG copy)>]
-<Figures/RNNRBM.png, id=163, 388.45125pt x 214.8025pt>
+<Figures/RNNRBM.png, id=195, 388.45125pt x 214.8025pt>
 File: Figures/RNNRBM.png Graphic file (type png)
 
 <use Figures/RNNRBM.png>
 Package pdftex.def Info: Figures/RNNRBM.png used on input line 126.
 (pdftex.def)             Requested size: 233.07254pt x 128.88249pt.
 
-<Figures/calculation_cd.png, id=164, 740.7675pt x 353.32pt>
+<Figures/calculation_cd.png, id=196, 740.7675pt x 353.32pt>
 File: Figures/calculation_cd.png Graphic file (type png)
 
 <use Figures/calculation_cd.png>
@@ -903,43 +903,67 @@ Overfull \hbox (26.99086pt too wide) in paragraph at lines 145--147
  []
 
 [8 <./Figures/RNNRBM.png>]
-<Figures/gibbs_sampling.png, id=169, 226.8475pt x 126.4725pt>
+<Figures/gibbs_sampling.png, id=201, 226.8475pt x 126.4725pt>
 File: Figures/gibbs_sampling.png Graphic file (type png)
 
 <use Figures/gibbs_sampling.png>
 Package pdftex.def Info: Figures/gibbs_sampling.png used on input line 157.
 (pdftex.def)             Requested size: 136.10954pt x 75.88408pt.
-) [9 <./Figures/calculation_cd.png (PNG copy)> <./Figures/gibbs_sampling.png>] 
-[10]
+) (./Chapters/sgrnn.tex [9 <./Figures/calculation_cd.png (PNG copy)> <./Figures
+/gibbs_sampling.png>] [10]
+Chapter 2.
+------------------------------------------------------------------------------
+ 2  Self-Growing Recurrent Neural Network
+------------------------------------------------------------------------------
+[11
+
+]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 34.
+ <Figures/ring_lattice.png, id=217, 240.9pt x 221.82875pt>
+File: Figures/ring_lattice.png Graphic file (type png)
+
+<use Figures/ring_lattice.png>
+Package pdftex.def Info: Figures/ring_lattice.png used on input line 60.
+(pdftex.def)             Requested size: 168.62883pt x 155.27905pt.
+ [12]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 73.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 73.
+) [13 <./Figures/ring_lattice.png>]
 ------------------------------------------------------------------------------
  Bibliography
 ------------------------------------------------------------------------------
-(./main.bbl [11
+(./main.bbl [14
 
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 288.
- [12]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 288.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 287.
+ [15]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 287.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 288.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 288.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 287.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 287.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 2FD94FB6A8515F2505B857FBBF3B86EF;1908.
+(rerunfilecheck)             Checksum: 533F4B520E6AFA1999A206CE28969BCE;2946.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 288.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 287.
  ) 
 Here is how much of TeX's memory you used:
- 13433 strings out of 493304
- 188673 string characters out of 6139871
- 261881 words of memory out of 5000000
- 16640 multiletter control sequences out of 15000+600000
- 13256 words of font info for 48 fonts, out of 8000000 for 9000
+ 13526 strings out of 493304
+ 189859 string characters out of 6139871
+ 261938 words of memory out of 5000000
+ 16705 multiletter control sequences out of 15000+600000
+ 14184 words of font info for 51 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 49i,12n,45p,1990b,452s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 49i,12n,45p,1990b,634s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/tex
@@ -952,10 +976,10 @@ c/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (16 pages, 406582 bytes).
+Output written on main.pdf (19 pages, 422541 bytes).
 PDF statistics:
- 247 PDF objects out of 1000 (max. 8388607)
- 205 compressed objects within 3 object streams
- 49 named destinations out of 1000 (max. 500000)
- 116 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 306 PDF objects out of 1000 (max. 8388607)
+ 259 compressed objects within 3 object streams
+ 68 named destinations out of 1000 (max. 500000)
+ 169 words of extra memory for PDF output out of 10000 (max. 10000000)
 

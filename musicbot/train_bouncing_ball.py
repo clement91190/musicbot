@@ -3,6 +3,7 @@ from math import sqrt
 from sklearn.metrics import mean_squared_error
 from data.bouncing_ball.bouncing_ball import bounce_vec
 from RNN.hf_rnn import RNNHfOptim
+from RNN.SGRNN import WeightsHandler
 
 
 def gen_dataset(video_res, t_steps, n_samples=100):
@@ -29,14 +30,16 @@ def main():
     video_res = 15
     t_steps = 30
     n_in = n_out = video_res ** 2
-    n_samples = 1000
+    n_samples = 100
 
     #generating training_set
     seq_training, target_training = gen_dataset(video_res, t_steps, n_samples)
 
     print "preparing optimizer ..."
-    trainer = RNNHfOptim(n_in=n_in, n_out=n_out, n_hidden=300)
-    trainer.tune_optimizer(num_updates=19)
+    #trainer = RNNHfOptim(n_in=n_in, n_out=n_out, n_hidden=300, model="RNN")
+    weight_handler = WeightsHandler(n_in=n_in, n_out=n_out, n_hidden_start=20)
+    trainer = RNNHfOptim(model="SGRNN", weight_handler=weight_handler)
+    trainer.tune_optimizer(num_updates=10)
 
     print "training..."
     trainer.fit(seq_training, target_training)
