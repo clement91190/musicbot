@@ -1,4 +1,5 @@
 from pylab import *
+import math
 from std import *
 
 def sigmoid(x):        return 1./(1.+exp(-x))
@@ -13,6 +14,7 @@ def new_speeds(m1, m2, v1, v2):
 
 # size of bounding box: SIZE X SIZE.
 # that's it.
+
 
 def bounce_n(T=128, n=2, r=None, m=None):
     if r==None: r=array([1.2]*n)
@@ -72,8 +74,10 @@ def bounce_n(T=128, n=2, r=None, m=None):
 
     return X
 
+
 def ar(x,y,z):
     return z/2+arange(x,y,z,dtype='float')
+
 
 def matricize(X,res,r=None):
 
@@ -92,21 +96,25 @@ def matricize(X,res,r=None):
         A[t][A[t]>1]=1
     return A
 
+
 def bounce_mat(res, n=2, T=128, r =None):
     if r==None: r=array([1.2]*n)
     x = bounce_n(T,n,r);
     A = matricize(x,res,r)
     return A
 
+
 def bounce_vec(res, n=2, T=128, r =None, m =None):
     if r==None: r=array([1.2]*n)
     x = bounce_n(T,n,r,m);
     V = matricize(x,res,r)
     return V.reshape(T, res**2)
-    
+
+
 def show_single_V(V):
     res = int(sqrt(shape(V)[0]))
     show(V.reshape(res, res))
+
 
 def show_V(V):
     T   = len(V)
@@ -120,7 +128,9 @@ def show_V(V):
         draw()
         show(V[t].reshape(res, res))    
 
+
 def unsigmoid(x): return log (x) - log (1-x)
+
 
 def show_A(A):
     T = len(A)
@@ -131,4 +141,49 @@ def show_A(A):
         else:    
             img.set_data(A[t])
         draw()
+
+
+def kl_div(p, q):
+    """ p (prediction) and q(test_set) are vectors of the same size """
+    res = 0
+    for (pi, qi) in zip(p, q):
+        if pi < 0:
+            pi = 0.0001
+        if pi > 1.0:
+            pi = 0.9999
+        #if not(pi == 0 or pi == 1):
+        if qi != 0:
+            res += qi * math.log(qi / pi)
+        if qi != 1:    
+            res += (1 - qi) * math.log((1 - qi) / (1 - pi))
+        #else:
+        #    if pi != qi:
+        #        res += 1000
+        #        print " should not append ! "
+    return res
+
+
+def kl_div_2(p, q):
+    #print p.shape
+    #print q.shape
+    #raw_input()
+    p = np.where(p > 0.0, p, 0.0001)
+    p = np.where(p < 1.0, p, 0.9999)
+    v = np.where(q != 0, q * np.log(q / p), 0)
+    v2 = np.where(q != 1, (1 - q) * np.log((1 - q) / (1 - p)), 0)
+    #print v
+    #print v2
+    #print v.shape
+    return np.mean(np.sum(v + v2, axis=1), axis=0)
+
+
+def kl_seq(Vp, Vq):
+    val2 = kl_div_2(Vp, Vq)
+    return val2
+                
+
+        
+
+
+
 

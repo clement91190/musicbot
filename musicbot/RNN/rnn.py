@@ -39,6 +39,7 @@ class RNN(object):
         self.input = input
         self.activation = activation
         self.output_type = output_type
+        self.mask = None
 
         # when using HF, SoftmaxGrad.grad is not implemented
         # use a symbolic softmax which is slightly slower than T.nnet.softmax
@@ -94,13 +95,16 @@ class RNN(object):
             init = np.zeros(param.get_value(borrow=True).shape,
                             dtype=theano.config.floatX)
             self.updates[param] = theano.shared(init)
+            
+        if self.mask is not None:
+            self.temp_W = self.W * self.mask
 
         # recurrent function (using tanh activation function) and linear output
         # activation function
         def step(x_t, h_tm1):
             if self.mask is not None:
                 h_t = self.activation(
-                    T.dot(x_t, self.W_in) + T.dot(h_tm1, self.W * self.mask) + self.bh)
+                    T.dot(x_t, self.W_in) + T.dot(h_tm1, self.temp_W) + self.bh)
             else:
                 h_t = self.activation(
                     T.dot(x_t, self.W_in) + T.dot(h_tm1, self.W) + self.bh)

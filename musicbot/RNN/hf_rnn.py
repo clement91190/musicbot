@@ -43,7 +43,7 @@ class RNNHfOptim(BaseEstimator):
             preconditioner=False, max_cg_iterations=250,
             num_updates=5, validation=None, validation_frequency=1,
             patience=np.inf, save_progress=None, cg_number_batches=20, 
-            gd_number_batches=100):
+            gd_number_batches=100, plot_cost_file=None):
         #TODO write all parameters with descriptions
 
         self.initial_lambda = initial_lambda
@@ -58,6 +58,7 @@ class RNNHfOptim(BaseEstimator):
         self.save_progress = save_progress
         self.cg_number_batches = cg_number_batches
         self.gd_number_batches = gd_number_batches
+        self.plot_cost_file = plot_cost_file
 
 
     def ready(self):
@@ -198,6 +199,16 @@ class RNNHfOptim(BaseEstimator):
         file.close()
 
     def fit(self, X_train, Y_train):
+        self.prepare(X_train, Y_train)
+        ###############
+        # TRAIN MODEL #
+        ###############
+        print "starting training ..."
+
+        for i in range(self.n_updates):
+            self.train_step(i)
+
+    def prepare(self, X_train, Y_train):
         """ Fit model
 
         Pass in X_test, Y_test to compute test error and report during
@@ -232,15 +243,11 @@ class RNNHfOptim(BaseEstimator):
             s=self.rnn.y_pred,
             costs=[cost], h=self.rnn.h)
 
-        ###############
-        # TRAIN MODEL #
-        ###############
-        print "starting training ..."
-
-        self.train()
-
-    def train(self):
-        self.opt.train(self.gradient_dataset, self.cg_dataset, num_updates=self.n_updates)
+    def train_step(self, n):
+        self.opt.train(
+            self.gradient_dataset, self.cg_dataset,
+            num_updates=n, save_progress=self.save_progress,
+            plot_cost_file=self.plot_cost_file)
 
     def continue_training(self, n_updates):
         self.n_updates = n_updates

@@ -11,9 +11,10 @@
 \contentsline {chapter}{\numberline {2} Self-Growing Recurrent Neural Network}{11}{chapter.18}
 \contentsline {section}{\numberline {2.1}Introduction}{11}{section.19}
 \contentsline {section}{\numberline {2.2}SGRNN}{12}{section.20}
-\contentsline {subsection}{\numberline {2.2.1}Weights Initialization}{12}{subsection.30}
-\contentsline {subsection}{\numberline {2.2.2}Evolution Step}{13}{subsection.32}
-\contentsline {subsection}{\numberline {2.2.3}Reordering Step}{13}{subsection.33}
+\contentsline {subsection}{\numberline {2.2.1}Implementation of the Hessian Free Optimization step}{12}{subsection.30}
+\contentsline {subsection}{\numberline {2.2.2}Weights Initialization}{13}{subsection.31}
+\contentsline {subsection}{\numberline {2.2.3}Evolution Step}{14}{subsection.33}
+\contentsline {subsection}{\numberline {2.2.4}Reordering Step}{14}{subsection.34}
 \vspace {2em}
 \vspace {2em}
-\contentsline {chapter}{Bibliography}{14}{dummy.34}
+\contentsline {chapter}{Bibliography}{15}{dummy.35}
