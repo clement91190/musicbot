@@ -42,7 +42,7 @@ class RNNHfOptim(BaseEstimator):
             self, initial_lambda=0.1, mu=0.03, global_backtracking=False,
             preconditioner=False, max_cg_iterations=250,
             num_updates=5, validation=None, validation_frequency=1,
-            patience=np.inf, save_progress=None, cg_number_batches=20, 
+            patience=np.inf, save_progress=None, cg_number_batches=100, 
             gd_number_batches=100, plot_cost_file=None):
         #TODO write all parameters with descriptions
 
@@ -230,9 +230,9 @@ class RNNHfOptim(BaseEstimator):
 
         #TODO : batch_size in parameters.
         self.gradient_dataset = SequenceDataset(
-            [seq, targets], batch_size=None, number_batches=self.gd_number_batches)
+            [seq, targets], batch_size=len(seq) / self.gd_number_batches, number_batches=self.gd_number_batches)
         self.cg_dataset = SequenceDataset(
-            [seq, targets], batch_size=None, number_batches=self.cg_number_batches)
+            [seq, targets], batch_size=len(seq) / self.cg_number_batches , number_batches=self.cg_number_batches)
 
         cost = self.rnn.loss(self.y) \
             + self.L1_reg * self.rnn.L1 \

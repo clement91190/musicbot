@@ -35,17 +35,29 @@ def train_classical_rnn():
     video_res = 15
     t_steps = 30
     n_in = n_out = video_res ** 2
-    n_samples = 1000
+    n_samples = 100
 
     #generating training_set
     seq_training, target_training = gen_dataset(video_res, t_steps, n_samples)
+    seq_training = seq_training * 2
+    target_training = target_training * 2
+    n_updates = 100
 
     print "preparing optimizer ..."
-    trainer = RNNHfOptim(n_in=n_in, n_out=n_out, n_hidden=300, model="RNN")
-    trainer.tune_optimizer(num_updates=10)
+    trainer = RNNHfOptim(n_in=n_in, n_out=n_out, n_hidden=300, model="RNN", activation='sigmoid')
+    trainer.tune_optimizer(
+        num_updates=n_updates, cg_number_batches=1, gd_number_batches=1,
+        save_progress="temp_saving_file.pkl", plot_cost_file="plot_cost_value.pkl")
+
+    test_errors = []
 
     print "training..."
-    trainer.fit(seq_training, target_training)
+    trainer.prepare(seq_training, target_training)
+    for i in range(n_updates):
+        trainer.train_step(i)
+        test_errors.append(test(trainer, video_res, t_steps, 50))
+        with open('test_errors.pkl', 'w') as f:
+            cPickle.dump(test_errors, f)
 
     #evaluating results
     print "testing..."
@@ -56,7 +68,7 @@ def main():
     video_res = 18
     t_steps = 30
     n_in = n_out = video_res ** 2
-    n_samples = 1000
+    n_samples = 100
     n_updates = 20
 
     test_errors = []
@@ -66,9 +78,11 @@ def main():
 
     print "preparing optimizer ..."
     #trainer = RNNHfOptim(n_in=n_in, n_out=n_out, n_hidden=300, model="RNN")
-    weight_handler = WeightsHandler(n_in=n_in, n_out=n_out, n_hidden_start=100)
-    trainer = RNNHfOptim(model="SGRNN", weight_handler=weight_handler)
-    trainer.tune_optimizer(num_updates=n_updates, save_progress="temp_saving_file.pkl", plot_cost_file="plot_cost_value.pkl")
+    weight_handler = WeightsHandler(n_in=n_in, n_out=n_out, n_hidden_start=300)
+    trainer = RNNHfOptim(model="SGRNN", weight_handler=weight_handler, activation='sigmoid')
+    trainer.tune_optimizer(
+        num_updates=n_updates, cg_number_batches=5, gd_number_batches=5,
+        save_progress="temp_saving_file.pkl", plot_cost_file="plot_cost_value.pkl")
 
     print "training..."
     trainer.prepare(seq_training, target_training)
@@ -84,7 +98,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
-    #train_classical_rnn()
+    #main()
+    train_classical_rnn()
 
 

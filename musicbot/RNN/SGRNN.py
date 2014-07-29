@@ -9,7 +9,7 @@ from rnn import RNN
 
 
 class WeightsHandler():
-    def __init__(self, n_in, n_out, satu_weights = 100, n_hidden_start=10):
+    def __init__(self, n_in, n_out, satu_weights=100, n_hidden_start=10, degree_start=3):
         self.n_in = n_in
         self.n_out = n_out
         self.n_hidden = n_hidden_start
@@ -28,10 +28,10 @@ class WeightsHandler():
 
         #changing W -> keeping only k-neighbors connections.
 
-        k = 3
+        self.degree_start = degree_start
         for i in range(self.n_hidden):
             for j in range(self.n_hidden):
-                if abs(i - j) > k:
+                if abs(i - j) > self.degree_start:
                     self.W[i, j] = 0.
 
         self.bh = np.zeros((self.n_hidden,), dtype=theano.config.floatX)
