@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  22 JUL 2014 12:30
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.11)  14 AUG 2014 14:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -731,6 +731,15 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 36.
 
 LaTeX Warning: Label `fig:rtrbm' multiply defined.
 
+
+LaTeX Warning: Label `fig:ring_lattice' multiply defined.
+
+
+LaTeX Warning: Label `Chapter 2' multiply defined.
+
+
+LaTeX Warning: Label `fig:ring_lattice' multiply defined.
+
 )
 \openout1 = `main.aux'.
 
@@ -814,7 +823,7 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 79.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<Figures/Logo.jpg, id=72, 280.04625pt x 301.125pt>
+<Figures/Logo.jpg, id=92, 280.04625pt x 301.125pt>
 File: Figures/Logo.jpg Graphic file (type jpg)
  <use Figures/Logo.jpg>
 Package pdftex.def Info: Figures/Logo.jpg used on input line 92.
@@ -863,35 +872,35 @@ Chapter 1.
 
 
 
-] [2] <Figures/RNN.png, id=153, 1130.2225pt x 376.40625pt>
+] [2] <Figures/RNN.png, id=184, 1130.2225pt x 376.40625pt>
 File: Figures/RNN.png Graphic file (type png)
 
 <use Figures/RNN.png>
 Package pdftex.def Info: Figures/RNN.png used on input line 53.
 (pdftex.def)             Requested size: 339.06937pt x 112.92273pt.
  [3 <./Figures/RNN.png (PNG copy)>]
-<Figures/gradient_ellipse.jpg, id=164, 277.035pt x 183.68625pt>
+<Figures/gradient_ellipse.jpg, id=195, 277.035pt x 183.68625pt>
 File: Figures/gradient_ellipse.jpg Graphic file (type jpg)
 
 <use Figures/gradient_ellipse.jpg>
 Package pdftex.def Info: Figures/gradient_ellipse.jpg used on input line 73.
 (pdftex.def)             Requested size: 193.92317pt x 128.57947pt.
  [4] [5 <./Figures/gradient_ellipse.jpg>]
-[6] <Figures/RTRBM.png, id=192, 953.5625pt x 331.2375pt>
+[6] <Figures/RTRBM.png, id=222, 953.5625pt x 331.2375pt>
 File: Figures/RTRBM.png Graphic file (type png)
 
 <use Figures/RTRBM.png>
 Package pdftex.def Info: Figures/RTRBM.png used on input line 108.
 (pdftex.def)             Requested size: 381.41824pt x 132.49265pt.
  [7 <./Figures/RTRBM.png (PNG copy)>]
-<Figures/RNNRBM.png, id=200, 388.45125pt x 214.8025pt>
+<Figures/RNNRBM.png, id=230, 388.45125pt x 214.8025pt>
 File: Figures/RNNRBM.png Graphic file (type png)
 
 <use Figures/RNNRBM.png>
 Package pdftex.def Info: Figures/RNNRBM.png used on input line 126.
 (pdftex.def)             Requested size: 233.07254pt x 128.88249pt.
 
-<Figures/calculation_cd.png, id=201, 740.7675pt x 353.32pt>
+<Figures/calculation_cd.png, id=231, 740.7675pt x 353.32pt>
 File: Figures/calculation_cd.png Graphic file (type png)
 
 <use Figures/calculation_cd.png>
@@ -903,19 +912,74 @@ Overfull \hbox (26.99086pt too wide) in paragraph at lines 145--147
  []
 
 [8 <./Figures/RNNRBM.png>]
-<Figures/gibbs_sampling.png, id=206, 226.8475pt x 126.4725pt>
+<Figures/gibbs_sampling.png, id=236, 226.8475pt x 126.4725pt>
 File: Figures/gibbs_sampling.png Graphic file (type png)
 
 <use Figures/gibbs_sampling.png>
 Package pdftex.def Info: Figures/gibbs_sampling.png used on input line 157.
 (pdftex.def)             Requested size: 136.10954pt x 75.88408pt.
-) (./Chapters/sgrnn.tex [9 <./Figures/calculation_cd.png (PNG copy)> <./Figures
-/gibbs_sampling.png>] [10]
+) (./Chapters/study_rnn.tex [9 <./Figures/calculation_cd.png (PNG copy)> <./Fig
+ures/gibbs_sampling.png>] [10]
 Chapter 2.
 ------------------------------------------------------------------------------
- 2  Self-Growing Recurrent Neural Network
+ 2  Study of the internal structure of a previously trained Recurrent Neural Ne
+twork
 ------------------------------------------------------------------------------
 [11
+
+]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 30.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 30.
+
+
+Package Fancyhdr Warning: \headheight is too small (20.0pt): 
+ Make it at least 25.2842pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[12] [13] <Figures/weighted_graph_spring.png, id=264, 367.1316pt x 271.0125pt>
+File: Figures/weighted_graph_spring.png Graphic file (type png)
+
+<use Figures/weighted_graph_spring.png>
+Package pdftex.def Info: Figures/weighted_graph_spring.png used on input line 5
+0.
+(pdftex.def)             Requested size: 293.70567pt x 216.81029pt.
+
+<Figures/weighted_graph_spectral.png, id=265, 317.2653pt x 276.7941pt>
+File: Figures/weighted_graph_spectral.png Graphic file (type png)
+
+<use Figures/weighted_graph_spectral.png>
+Package pdftex.def Info: Figures/weighted_graph_spectral.png used on input line
+ 59.
+(pdftex.def)             Requested size: 253.81258pt x 221.43556pt.
+
+<Figures/weight_distribution.png, id=266, 578.16pt x 433.62pt>
+File: Figures/weight_distribution.png Graphic file (type png)
+
+<use Figures/weight_distribution.png>
+Package pdftex.def Info: Figures/weight_distribution.png used on input line 71.
+
+(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
+ [14 <./Figures/weighted_graph_spring.png> <./Figures/weighted_graph_spectral.p
+ng>]
+<Figures/abs_weight_distribution.png, id=273, 578.16pt x 433.62pt>
+File: Figures/abs_weight_distribution.png Graphic file (type png)
+
+<use Figures/abs_weight_distribution.png>
+Package pdftex.def Info: Figures/abs_weight_distribution.png used on input line
+ 79.
+(pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
+) (./Chapters/sgrnn.tex [15 <./Figures/weight_distribution.png> <./Figures/abs_
+weight_distribution.png>]
+Chapter 3.
+------------------------------------------------------------------------------
+ 3  Self-Growing Recurrent Neural Network
+------------------------------------------------------------------------------
+[16
 
 ]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
@@ -928,98 +992,121 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.52 ...hh}$ with the hadamard product $ M \circle
-                                                   W_{hh} $ , where $M$ is t...
+l.53 ...{hh}$ with the hadamard product $M \circle
+                                                   W_{hh}$ , where $M$ is th...
 
 ? 
 ! Missing number, treated as zero.
 <to be read again> 
                    W
-l.52 ...}$ with the hadamard product $ M \circle W
-                                                  _{hh} $ , where $M$ is the...
+l.53 ...h}$ with the hadamard product $M \circle W
+                                                  _{hh}$ , where $M$ is the ...
 
 ? 
 ! Illegal unit of measure (pt inserted).
 <to be read again> 
                    W
-l.52 ...}$ with the hadamard product $ M \circle W
-                                                  _{hh} $ , where $M$ is the...
+l.53 ...h}$ with the hadamard product $M \circle W
+                                                  _{hh}$ , where $M$ is the ...
 
 ? 
 ! Missing number, treated as zero.
 <to be read again> 
                    \relax 
-l.52 ...}$ with the hadamard product $ M \circle W
-                                                  _{hh} $ , where $M$ is the...
+l.53 ...h}$ with the hadamard product $M \circle W
+                                                  _{hh}$ , where $M$ is the ...
 
 ? 
 ! Illegal unit of measure (pt inserted).
 <to be read again> 
                    \relax 
-l.52 ...}$ with the hadamard product $ M \circle W
-                                                  _{hh} $ , where $M$ is the...
+l.53 ...h}$ with the hadamard product $M \circle W
+                                                  _{hh}$ , where $M$ is the ...
 
 ? 
-[12] <Figures/ring_lattice.png, id=238, 240.9pt x 221.82875pt>
+[17] <Figures/ring_lattice.png, id=308, 240.9pt x 221.82875pt>
 File: Figures/ring_lattice.png Graphic file (type png)
 
 <use Figures/ring_lattice.png>
-Package pdftex.def Info: Figures/ring_lattice.png used on input line 67.
+Package pdftex.def Info: Figures/ring_lattice.png used on input line 68.
 (pdftex.def)             Requested size: 168.62883pt x 155.27905pt.
- [13 <./Figures/ring_lattice.png>]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 80.
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 80.
-) [14]
+ [18 <./Figures/ring_lattice.png>]) [19]
 ------------------------------------------------------------------------------
  Bibliography
 ------------------------------------------------------------------------------
-(./main.bbl [15
+(./main.bbl [20
 
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 287.
- [16]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 287.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 288.
+ [21]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 288.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 287.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 287.
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 8FC1A00EC6BCE93F6815532BC9E7DFCB;3315.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 288.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 288.
 
+
+Package rerunfilecheck Warning: File `main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `main.out':
+(rerunfilecheck)             Before: BB3DFAEFF7D4AB58AF3C42D4EDEBD8A6;4371
+(rerunfilecheck)             After:  034A3A7A49C1AB793204F665E34225E2;4371.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 287.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 288.
  ) 
 Here is how much of TeX's memory you used:
- 13529 strings out of 493304
- 189894 string characters out of 6139871
- 261938 words of memory out of 5000000
- 16706 multiletter control sequences out of 15000+600000
+ 13583 strings out of 493304
+ 191079 string characters out of 6139871
+ 262963 words of memory out of 5000000
+ 16730 multiletter control sequences out of 15000+600000
  14184 words of font info for 51 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  49i,12n,45p,1990b,634s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (20 pages, 424593 bytes).
+pdfTeX warning (dest): name{figure.caption.39} has been referenced but does n
+ot exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{dummy.42} has been referenced but does not exist, r
+eplaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.41} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.38} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.37} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{section.27} has been referenced but does not exist,
+ replaced by a fixed one
+
+pdfTeX warning (dest): name{section.26} has been referenced but does not exist,
+ replaced by a fixed one
+
+pdfTeX warning (dest): name{chapter.25} has been referenced but does not exist,
+ replaced by a fixed one
+
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+sy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (25 pages, 881894 bytes).
 PDF statistics:
- 318 PDF objects out of 1000 (max. 8388607)
- 270 compressed objects within 3 object streams
- 70 named destinations out of 1000 (max. 500000)
- 177 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 400 PDF objects out of 1000 (max. 8388607)
+ 337 compressed objects within 4 object streams
+ 93 named destinations out of 1000 (max. 500000)
+ 237 words of extra memory for PDF output out of 10000 (max. 10000000)
 

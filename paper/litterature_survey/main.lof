@@ -6,4 +6,9 @@
 \contentsline {figure}{\numberline {1.5}{\ignorespaces CD calculaiton}}{9}{figure.caption.16}
 \contentsline {figure}{\numberline {1.6}{\ignorespaces Gibbs sampling}}{9}{figure.caption.17}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces A ring lattice}}{13}{figure.caption.32}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Plot of the RNN using weights as springs}}{14}{figure.caption.23}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Plot of the RNN with spectral analyses of the Laplacian Matrix }}{14}{figure.caption.24}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Weight distribution }}{15}{figure.caption.25}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Distribution of the absolute value of the weights}}{15}{figure.caption.26}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces A ring lattice}}{18}{figure.caption.41}

@@ -4,45 +4,45 @@ The top-level auxiliary file: main.aux
 The style file: unsrtnat.bst
 Database file #1: Bibliography.bib
 Warning--can't use both volume and number fields in krizhevsky2012imagenet
-You've used 13 entries,
+You've used 14 entries,
             2481 wiz_defined-function locations,
-            624 strings with 6544 characters,
-and the built_in function-call counts, 5755 in all, are:
-= -- 527
-> -- 205
-< -- 16
-+ -- 84
-- -- 58
-* -- 371
-:= -- 817
-add.period$ -- 41
-call.type$ -- 13
-change.case$ -- 26
-chr.to.int$ -- 13
-cite$ -- 14
-duplicate$ -- 339
-empty$ -- 558
-format.name$ -- 75
-if$ -- 1309
+            630 strings with 6638 characters,
+and the built_in function-call counts, 6237 in all, are:
+= -- 578
+> -- 212
+< -- 18
++ -- 88
+- -- 60
+* -- 395
+:= -- 880
+add.period$ -- 45
+call.type$ -- 14
+change.case$ -- 28
+chr.to.int$ -- 14
+cite$ -- 15
+duplicate$ -- 371
+empty$ -- 609
+format.name$ -- 78
+if$ -- 1426
 int.to.chr$ -- 1
-int.to.str$ -- 14
-missing$ -- 13
-newline$ -- 73
-num.names$ -- 39
-pop$ -- 133
+int.to.str$ -- 15
+missing$ -- 14
+newline$ -- 78
+num.names$ -- 42
+pop$ -- 145
 preamble$ -- 1
-purify$ -- 13
+purify$ -- 14
 quote$ -- 0
-skip$ -- 241
+skip$ -- 263
 stack$ -- 0
-substring$ -- 322
-swap$ -- 110
-text.length$ -- 10
+substring$ -- 356
+swap$ -- 121
+text.length$ -- 11
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 91
+type$ -- 98
 warning$ -- 1
-while$ -- 50
+while$ -- 55
 width$ -- 0
-write$ -- 177
+write$ -- 191
 (There was 1 warning)
