@@ -8,7 +8,9 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Plot of the RNN using weights as springs}}{14}{figure.caption.23}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Plot of the RNN with spectral analyses of the Laplacian Matrix }}{14}{figure.caption.24}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Weight distribution }}{15}{figure.caption.25}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Distribution of the absolute value of the weights}}{15}{figure.caption.26}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Weight distribution }}{15}{figure.caption.26}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Distribution of the absolute value of the weights}}{15}{figure.caption.27}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Distribution of the sum of the input connection weights on Whh}}{16}{figure.caption.29}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Distribution of the sum of the output connection weights on Whh}}{16}{figure.caption.30}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces A ring lattice}}{18}{figure.caption.41}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces A ring lattice}}{19}{figure.caption.45}

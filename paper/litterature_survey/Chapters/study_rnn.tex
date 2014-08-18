@@ -14,13 +14,13 @@
 
 \section{Motivation}
 
-In this chapter we study the internal structure of examples of previously trained recurrent neural networks in order to propose a practical improvement of the architecture for a given problem. The lack of understanding of the dynamics within a neural network and the progress of computation performance and implementation of Neural Netowrks led to accepting that the larger the network is, the better it is suited to obtain a better solution. Many techniques have been implemented in order to reduce the overfitting of these models that contains a large number of parameters such as Georges Hinton's dropouts for training Deep Feed-Forward Neural Networks. However, it seems rather unnatural to ommit the study of the internal structure of a network in the field of Deep Learning and especially for Recurrent Neural Network, where complex dynamics of the states can be observered. For example, in the classical model of a Recurrent Neural Network, the weight matrix is dense however if we observe the human brain, it is estimated that the number of neurons is approximatively $10^11$ and the number of synapses between $10^14$ and $10^15$, which means that the mean number of connections from a neuron to another is between $10^3$ and $10^4$ and therefore that the weight matrix is extreamly sparse. In this chapter we use graph theory techniques to perform an empirical study of different neural networks that have been previously trained on different problems. 
+In this chapter we study the internal structure of examples of previously trained recurrent neural networks in order to propose a practical improvement of the architecture for a given problem. The lack of understanding of the dynamics within a neural network and the progress of computation performance and implementation of Neural Netowrks led to accepting that the larger the network is, the better it is suited to obtain a better solution. Many techniques have been implemented in order to reduce the overfitting of these models that contains a large number of parameters such as Georges Hinton's dropouts for training Deep Feed-Forward Neural Networks. However, it seems rather unnatural to ommit the study of the internal structure of a network in the field of Deep Learning and especially for Recurrent Neural Network, where complex dynamics of the states can be observered. For example, in the classical model of a Recurrent Neural Network, the weight matrix is dense but if we observe the human brain, it is estimated that the number of neurons is approximatively $10^{11}$ and the number of synapses between $10^{14}$ and $10^{15}$, which means that the mean number of connections from a neuron to another is between $10^3$ and $10^4$ and therefore that the weight matrix is extreamly sparse. In this chapter we use graph theory techniques to perform an empirical study of different neural networks that have been previously trained on different problems. 
 
 \section{Experiment}
 
 \subsection{Problem}
 
-The neural network is trained on a 100 timestep sequence of random binary number, where the goal is to memorize the first input given to the network. It contains 100 neurons and is trained using the Hessian Free Optimization method (HFO). This example use the Theano implementation of the HFO of Boulanger-Lewandowski \cite{boulanger2012modeling}. The network was trained for approximatly 8 hours on a 4 cores computer which gave a 0 error on the validation set as described on the Github repository of Boulanger-Lewandowski. In the end of the training we obtain the (100, 100) hidden-to-hidden weight matrix and perform the graph analyse on this matrix. This kind of memorization problem is typically hard for a recurrent neural network to learn, when its trained using stochastic gradient descent because it it emphasizes the vanishing gradient problem. The relevant input is 100-timestep old, and therefore the weight matrix is multiplied a 100 times, before reading the output which will be small as a composant of the gradient, this problem demonstrates the importance of a 2-order optimization method for RNNs. 
+The neural network is trained on a 100 timestep sequence of random binary number, where the goal is to memorize the first input given to the network. It contains 100 neurons and is trained using the Hessian Free Optimization method (HFO). This example use the Theano implementation of the HFO of Boulanger-Lewandowski \cite{boulanger2012modeling}. The network was trained for approximatly 8 hours on a 4 cores computer which gave a 0 error on the validation set as described on the Github repository of Boulanger-Lewandowski. In the end of the training we obtain the (100, 100) hidden-to-hidden weight matrix and perform the graph analyse on this matrix. This kind of memorization problem is typically hard for a recurrent neural network to learn, when its trained using stochastic gradient descent because it emphasizes the vanishing gradient problem. The relevant input is 100-timestep old, and therefore the weight matrix is multiplied a 100 times, before reading the output which will be small as a composant of the gradient, this problem demonstrates the importance of a 2-order optimization method for RNNs. 
 
 \subsection{Plot of the RNN}
 
@@ -31,16 +31,16 @@ In order to display the RNN, we use two differents layouts, the nodes are repres
     \item The spectral layout \cite{koren2003spectral} that performs eigenanalyses of the Laplacian Matrix ($L$) of the Graph and uses the eigenvectors of L to display the nodes on the 2D plane. L is defined as $$ L = D - A $$ where A is the symmetrical Matrix $$ A = 0.5(W + W^\top) $$ (because the RNN is a directed Graph.) and D is the diagonal matrix such that :  $$ D_{ii} = \sum_j A_{ij} $$ 
         $L$ is a semi-definite symmetrical Matrix with zero row sums. Therefore there is a spectral decomposition of this Matrix with positive eigenvalues and its eigenvectors are orthogonal. The two (or more for a n-dim layout) eigenvectors corresponding to the smallest non-zero eigenvalues are kept and use as the x and y coordinates.  
 
-        The Laplacian matrix has the following property : $$x^\top  L x = \sum_{i < j} A_{ij}(x_i^2 - x_j^2)^2 $$
+        The Laplacian matrix has the following property : $$x^\top  L x = \sum_{i < j} A_{ij}(x_i - x_j)^2 $$
         Displaying the graph as follow is the solution of a minimization problem ie : For a 1-D layout minimizing the energy $E$ defined as follow : 
-        $$ E(x) = \sum_{i,j} A_{ij} (x(i) - x(j))^2 $$ where $x \in \mathbb{R} $ with a constrain on the variance of $x$ $Var(x) = 1 $. 
-        Minimizing this energy on with a fixed variance will tend to make the edges as small as possible (with respect of the weights) and prevent all nodes to be on the same position. 
+        $$ E(x) = \sum_{i,j} A_{ij} (x_i - x_j)^2 $$ where $x \in \mathbb{R} $ with a constrain on the variance of $x$ : $Var(x) = 1 $. 
+        Minimizing this energy with a fixed variance will tend to make the edges as small as possible (with respect of the weights) and prevent all nodes to be on the same position. 
     This problem is equivalent to the following (when placing the mean of x to be null) : 
     $$ min_x x^\top L x $$
     given $ x^\top x = 1 $
     on the hyperplane $x^\top \dot 1_n = 0 $
 
-    which correspond to setting x to be the smallest normalized eigenvectors ($v_1$) (ie corresponding to the smallest non-zero eigenvalue) of L.
+    which corresponds to setting x to be the smallest normalized eigenvectors ($v_1$) (ie corresponding to the smallest non-zero eigenvalue) of L.
     The same reasonning can be applied to obtaining a k-dim layout, as the eigenvectors are orthogonals, we can resolve the same minimisation problem on the the subspace orthogonal to $v1$ for the second dimension ( which will be taking $y = v_2$) and so on. 
 \end{itemize}
 
@@ -62,8 +62,9 @@ In order to display the RNN, we use two differents layouts, the nodes are repres
     \label{fig:ring_lattice}
 \end{figure}
 
-We can observe that only 5 nodes are "in the middle" of the spring graph and in the periphery on the second node, which means that they have small connection to the rest of the nodes, whereas the other nodes have neighbors "strongly" attached to them. 
+We can observe that 5 nodes are on the periphery of the spectral graph, which means that they have small connection to the rest of the nodes (ie no strong connection to a cluster), whereas the other nodes have neighbors "strongly" attached to them. 
 
+\subsection{Weight distribution}
 It is also interesting to display the weight distribution : 
 
 \begin{figure}[htbp]
@@ -71,7 +72,7 @@ It is also interesting to display the weight distribution :
     \includegraphics[scale=0.4]{Figures/weight_distribution.png}
     \rule{35em}{0.5pt}
     \caption[Weight distribution ]{Weight distribution}
-    \label{fig:ring_lattice}
+    \label{fig:weight_dist}
 \end{figure}
 
 \begin{figure}[htbp]
@@ -79,10 +80,36 @@ It is also interesting to display the weight distribution :
     \includegraphics[scale=0.4]{Figures/abs_weight_distribution.png}
     \rule{35em}{0.5pt}
     \caption[Distribution of the absolute value of the weights]{Distribution of the absolute value of the weights}
-    \label{fig:ring_lattice}
+    \label{fig:abs_weight_dist}
 \end{figure}
 
 We can observe a that the distribution is relativly symmetric and that most weights are within the interval $[-0.2;02] $
+
+\subsection{Sums of weights}
+
+It is also interesting to compute the sum of the absolute value of the weights of the input connections in the hidden matrix ( ie : the rows of $W_{hh}$) ($\sum_{in,}(Whh)$) and also the output connection ($\sum_{out,}(Whh)$) (ie the columns of t $W_{hh} $). A neuron without any influence on the network have ($\sum_{out,}(Whh) = 0$) and a neuron which state is constant has the $\sum_{in,}(Whh) = 0$. Therefore by studying this 2 sums, we can hope to determine if some neurons are useless, or in the opposite if one neuron should be cloned.
+The following figures are the plot of these sums on the network. 
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.4]{Figures/input_sum_weight_distribution.png}
+    \rule{35em}{0.5pt}
+    \caption[Distribution of the sum of the input connection weights on Whh]{Distribution of the sum of the input connection weights on Whh}
+    \label{fig:input_sum}
+\end{figure}
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.4]{Figures/output_sum_weight_distribution.png}
+    \rule{35em}{0.5pt}
+    \caption[Distribution of the sum of the output connection weights on Whh]{Distribution of the sum of the output connection weights on Whh}
+    \label{fig:output_sum}
+\end{figure}
+
+A surprising result is that these two sums do not change as much as expected over the set of neurons : for all the neurons these two sums are within $[8.0; 12.0]$, it is therefore difficult two establish which neuron to remove based on this measure.
+
+
 
 
 
