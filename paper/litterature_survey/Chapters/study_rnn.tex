@@ -16,7 +16,7 @@
 
 In this chapter we study the internal structure of examples of previously trained recurrent neural networks in order to propose a practical improvement of the architecture for a given problem. The lack of understanding of the dynamics within a neural network and the progress of computation performance and implementation of Neural Netowrks led to accepting that the larger the network is, the better it is suited to obtain a better solution. Many techniques have been implemented in order to reduce the overfitting of these models that contains a large number of parameters such as Georges Hinton's dropouts for training Deep Feed-Forward Neural Networks. However, it seems rather unnatural to ommit the study of the internal structure of a network in the field of Deep Learning and especially for Recurrent Neural Network, where complex dynamics of the states can be observered. For example, in the classical model of a Recurrent Neural Network, the weight matrix is dense but if we observe the human brain, it is estimated that the number of neurons is approximatively $10^{11}$ and the number of synapses between $10^{14}$ and $10^{15}$, which means that the mean number of connections from a neuron to another is between $10^3$ and $10^4$ and therefore that the weight matrix is extreamly sparse. In this chapter we use graph theory techniques to perform an empirical study of different neural networks that have been previously trained on different problems. 
 
-\section{Experiment}
+\section{Experiments}
 
 \subsection{Problem}
 
@@ -108,6 +108,25 @@ The following figures are the plot of these sums on the network.
 \end{figure}
 
 A surprising result is that these two sums do not change as much as expected over the set of neurons : for all the neurons these two sums are within $[8.0; 12.0]$, it is therefore difficult two establish which neuron to remove based on this measure.
+
+\subsection{Removing neurons of the network.}
+
+We can also directly measure the impact of a neuron on the network. By replacing all the inputs and output weights of the neuron with zeros, we destroy its impact on the RNN. It is then possible to test the network on a test set of sequence. We then display the results, that represent the percentage of errors on the test set. 
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.8]{Figures/error_test_set_remove_neuron.png}
+    \rule{35em}{0.5pt}
+    \caption[Error on the test set when removing 1 neuron]{Error on the test set when removing 1 neuron}
+    \label{fig:error_one_neuron}
+\end{figure}
+
+In the figure \ref{fig:error_one_neuron} we display the sorted list of percentage error on the test set when removing 1 different neurons at each time. This figure demonstrate that the importance of the neurons in the network is very unequal. For $20$ neurons out of $100$, the network without this neuron the error rate will not exceed $3\%$ whereas if we remove only $1$ "important" neuron in the top $20$ , the network will have lesser performance than random guess ! This shows that the dynamics within a network can be perturbed easily only with a small modification of the architecture if this modification affects the wrong neurons. Another really interesting results that this graph shows is that the sum of the weights does not give a good approximation of the importance of a neuron's worth.
+
+Using this measure, we can introduce an order relation in the set of neuron : 
+
+$$ N_i <= N_k \Leftrightarrow m(N_i) <= m(N_j) $$ where $m$ is a function that return the error percentage on the test set when removing a the neuron of the network.
+
 
 
 
