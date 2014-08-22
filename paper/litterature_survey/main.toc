@@ -10,19 +10,19 @@
 \contentsline {section}{\numberline {1.5}Training Restricted Boltzman Machines unsing constrastive divergence.}{8}{section.15}
 \contentsline {chapter}{\numberline {2} Study of the internal structure of a previously trained Recurrent Neural Network}{11}{chapter.18}
 \contentsline {section}{\numberline {2.1}Motivation}{11}{section.19}
-\contentsline {section}{\numberline {2.2}Experiment}{12}{section.20}
+\contentsline {section}{\numberline {2.2}Experiments}{12}{section.20}
 \contentsline {subsection}{\numberline {2.2.1}Problem}{12}{subsection.21}
 \contentsline {subsection}{\numberline {2.2.2}Plot of the RNN}{12}{subsection.22}
 \contentsline {subsection}{\numberline {2.2.3}Weight distribution}{15}{subsection.25}
 \contentsline {subsection}{\numberline {2.2.4}Sums of weights}{15}{subsection.28}
 \contentsline {subsection}{\numberline {2.2.5}Removing neurons of the network.}{16}{subsection.31}
-\contentsline {chapter}{\numberline {3} Self-Growing Recurrent Neural Network}{19}{chapter.33}
-\contentsline {section}{\numberline {3.1}Introduction}{19}{section.34}
-\contentsline {section}{\numberline {3.2}SGRNN}{20}{section.35}
-\contentsline {subsection}{\numberline {3.2.1}Implementation of the Hessian Free Optimization step}{20}{subsection.45}
-\contentsline {subsection}{\numberline {3.2.2}Weights Initialization}{21}{subsection.46}
-\contentsline {subsection}{\numberline {3.2.3}Evolution Step}{22}{subsection.48}
-\contentsline {subsection}{\numberline {3.2.4}Reordering Step}{22}{subsection.49}
+\contentsline {chapter}{\numberline {3} Self-Growing Recurrent Neural Network}{23}{chapter.41}
+\contentsline {section}{\numberline {3.1}Introduction}{23}{section.42}
+\contentsline {section}{\numberline {3.2}SGRNN}{24}{section.43}
+\contentsline {subsection}{\numberline {3.2.1}Implementation of the Hessian Free Optimization step}{24}{subsection.53}
+\contentsline {subsection}{\numberline {3.2.2}Weights Initialization}{25}{subsection.54}
+\contentsline {subsection}{\numberline {3.2.3}Evolution Step}{26}{subsection.56}
+\contentsline {subsection}{\numberline {3.2.4}Reordering Step}{26}{subsection.57}
 \vspace {2em}
 \vspace {2em}
-\contentsline {chapter}{Bibliography}{23}{dummy.50}
+\contentsline {chapter}{Bibliography}{27}{dummy.58}
