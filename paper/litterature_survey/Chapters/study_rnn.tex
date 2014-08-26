@@ -2,9 +2,9 @@
 
 \chapter{ Study of the internal structure of a previously trained Recurrent Neural Network} % Main chapter title
 
-\label{Chapter 2} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+\label{Chapter 3} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
-\lhead{Chapter 2. \emph{Study of the internal structure of a previously trained Recurrent Neural Network}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
+\lhead{Chapter 3. \emph{Study of the internal structure of a previously trained Recurrent Neural Network}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
 
 %----------------------------------------------------------------------------------------
 %	SECTION 1
@@ -123,15 +123,111 @@ We can also directly measure the impact of a neuron on the network. By replacing
 
 In the figure \ref{fig:error_one_neuron} we display the sorted list of percentage error on the test set when removing 1 different neurons at each time. This figure demonstrate that the importance of the neurons in the network is very unequal. For $20$ neurons out of $100$, the network without this neuron the error rate will not exceed $3\%$ whereas if we remove only $1$ "important" neuron in the top $20$ , the network will have lesser performance than random guess ! This shows that the dynamics within a network can be perturbed easily only with a small modification of the architecture if this modification affects the wrong neurons. Another really interesting results that this graph shows is that the sum of the weights does not give a good approximation of the importance of a neuron's worth.
 
-Using this measure, we can introduce an order relation in the set of neuron : 
+Using this measure, we can introduce an order relation $O$in the set of neuron : 
 
 $$ N_i <= N_k \Leftrightarrow m(N_i) <= m(N_j) $$ where $m$ is a function that return the error percentage on the test set when removing a the neuron of the network.
 
-In the following we compare this order relation with the ones obtained using other intrinseque metrics of the network. The goal is to find a way of knowing which neurons to remove in the network without "breaking" the dynamics involved so that the network is more efficient. 
+In the following we compare this order relation with the ones obtained using other intrinsic metrics of the network. The goal is to find a way of knowing which neurons to remove in the network without "breaking" the dynamics involved so that the network is more efficient. In order to compare a metric with the $m$ we sort the set of neurons and compare the list of indices. 
+
+$$ d(s , s') =  \sum_{i \in \mathbb{N}} {| s_i - s'_i|} $$
+
+A low value of $d$ means that 2 metrics order the neurons similarly. Using $d$ with the previously defined order relation provides a benchmark for finding an approximation of the worth of a neuron in the network. In the following we present the results of different metrics on this benchmark.
+
+The metrics that were tested on the network are : 
+\begin{itemize}
+    \item M1 : The sum of the absolute value of the in an out weights on the hidden-to-hidden connection
+    \item M2 : The sum of the in an out weights on the hidden-to-hidden connection
+    \item M3 : The absolute value of the sum of the in an out weights on the hidden-to-hidden connection
+    \item M4 : The clustering index
+    \item M5 : The absolute value of the ouput weight ( of the hidden to output matrix) 
+    \item M6 : The absolute value of the input weight ( of the hidden to output matrix) 
+    \item M7 : The sum of the two previous metrics.
+\end{itemize}
+
+All the metrics were normalized to be able to plot them with $m$
+In the following graphs we ploted the metrics for the sorted list of neurons with $O$, as well as the value of $m$. 
 
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.5]{Figures/m1.png}
+    \rule{35em}{0.5pt}
+    \caption[M1]{M1}
+    \label{fig:m1}
+\end{figure}
 
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.5]{Figures/m2.png}
+    \rule{35em}{0.5pt}
+    \caption[M2]{M2}
+\label{fig:m2}
+\end{figure}
 
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.5]{Figures/m3.png}
+    \rule{35em}{0.5pt}
+    \caption[M3]{M3}
+    \label{fig:m3}
+\end{figure}
 
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.5]{Figures/m4.png}
+    \rule{35em}{0.5pt}
+    \caption[M4]{M4}
+    \label{fig:m4}
+\end{figure}
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.5]{Figures/m5.png}
+    \rule{35em}{0.5pt}
+    \caption[M5]{M5}
+    \label{fig:m5}
+\end{figure}
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.5]{Figures/m6.png}
+    \rule{35em}{0.5pt}
+    \caption[M6]{M6}
+    \label{fig:m6}
+\end{figure}
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.5]{Figures/m7.png}
+    \rule{35em}{0.5pt}
+    \caption[M7]{M7}
+    \label{fig:m7}
+\end{figure}
+
+
+In order to make the figure \ref{fig:m4} we use the clustering index  : TODO ADD DESCRIPTION HERE
+
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tabular}{|l|l|}
+        \hline
+        M1 & 3118 \\ \hline
+        M2 & 3294 \\ \hline
+        M3 & 3512 \\ \hline
+        M4 & 3388 \\ \hline
+        M5 & 3244 \\ \hline
+        M6 & \textbf{2944} \\ \hline
+        M7 & 3402 \\
+        \hline
+    \end{tabular}
+    \label{fig:metrics}
+    \rule{35em}{0.5pt}
+    \caption[Table presenting the value of d for the different metrics ]{Table presenting the value of d for the different metrics}
+\end{figure}
