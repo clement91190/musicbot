@@ -101,21 +101,21 @@ class RNN(object):
 
         # recurrent function (using tanh activation function) and linear output
         # activation function
-        def step(x_t, h_tm1):
+        def step(x_t, h_tm1, ha_tm1):
             if self.mask is not None:
-                h_t = self.activation(
-                    T.dot(x_t, self.W_in) + T.dot(h_tm1, self.temp_W) + self.bh)
+                h_t = T.dot(x_t, self.W_in) + T.dot(ha_tm1, self.temp_W) + self.bh
+                ha_t = self.activation(h_t)
             else:
-                h_t = self.activation(
-                    T.dot(x_t, self.W_in) + T.dot(h_tm1, self.W) + self.bh)
-            y_t = T.dot(h_t, self.W_out) + self.by
-            return h_t, y_t
+                h_t = T.dot(x_t, self.W_in) + T.dot(ha_tm1, self.W) + self.bh
+                ha_t = self.activation(h_t)
+            y_t = T.dot(ha_t, self.W_out) + self.by
+            return h_t, ha_t, y_t
 
         # the hidden state `h` for the entire sequence, and the output for the
         # entire sequence `y` (first dimension is always time)
-        [self.h, self.y_pred], _ = theano.scan(step,
+        [self.h, self.ha, self.y_pred], _ = theano.scan(step,
                                                sequences=self.input,
-                                               outputs_info=[self.h0, None])
+                                               outputs_info=[None, self.h0, None])
 
         # L1 norm ; one regularization option is to enforce L1 norm to
         # be small

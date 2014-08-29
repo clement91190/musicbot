@@ -241,7 +241,11 @@ class RNNHfOptim(BaseEstimator):
         self.opt = hf_optimizer(
             p=self.rnn.params, inputs=[self.x, self.y],
             s=self.rnn.y_pred,
-            costs=[cost], h=self.rnn.h)
+            costs=[cost], 
+            h=self.rnn.h,
+            ha=self.rnn.ha)
+
+#TODO add h and ha for structural damping
 
     def train_step(self, n):
         self.opt.train(

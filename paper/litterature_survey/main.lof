@@ -1,25 +1,27 @@
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Recurrent Neural Network}}{3}{figure.caption.9}
-\contentsline {figure}{\numberline {1.2}{\ignorespaces Difficulty of gradient descent}}{5}{figure.caption.11}
-\contentsline {figure}{\numberline {1.3}{\ignorespaces RTRBM Graphical Model}}{7}{figure.caption.13}
-\contentsline {figure}{\numberline {1.4}{\ignorespaces RNN-RBM Graphical Model}}{8}{figure.caption.14}
-\contentsline {figure}{\numberline {1.5}{\ignorespaces CD calculaiton}}{9}{figure.caption.16}
-\contentsline {figure}{\numberline {1.6}{\ignorespaces Gibbs sampling}}{9}{figure.caption.17}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Plot of the RNN using weights as springs}}{14}{figure.caption.23}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Plot of the RNN with spectral analyses of the Laplacian Matrix }}{14}{figure.caption.24}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Weight distribution }}{15}{figure.caption.26}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Distribution of the absolute value of the weights}}{15}{figure.caption.27}
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Distribution of the sum of the input connection weights on Whh}}{16}{figure.caption.29}
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Distribution of the sum of the output connection weights on Whh}}{16}{figure.caption.30}
-\contentsline {figure}{\numberline {2.7}{\ignorespaces Error on the test set when removing 1 neuron}}{17}{figure.caption.32}
-\contentsline {figure}{\numberline {2.8}{\ignorespaces M1}}{19}{figure.caption.33}
-\contentsline {figure}{\numberline {2.9}{\ignorespaces M2}}{19}{figure.caption.34}
-\contentsline {figure}{\numberline {2.10}{\ignorespaces M3}}{20}{figure.caption.35}
-\contentsline {figure}{\numberline {2.11}{\ignorespaces M4}}{20}{figure.caption.36}
-\contentsline {figure}{\numberline {2.12}{\ignorespaces M5}}{21}{figure.caption.37}
-\contentsline {figure}{\numberline {2.13}{\ignorespaces M6}}{21}{figure.caption.38}
-\contentsline {figure}{\numberline {2.14}{\ignorespaces M7}}{22}{figure.caption.39}
-\contentsline {figure}{\numberline {2.15}{\ignorespaces Table presenting the value of d for the different metrics }}{22}{figure.caption.40}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Recurrent Neural Network}}{5}{figure.caption.12}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Difficulty of gradient descent}}{7}{figure.caption.14}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces RTRBM Graphical Model}}{9}{figure.caption.16}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces RNN-RBM Graphical Model}}{10}{figure.caption.17}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces CD calculaiton}}{11}{figure.caption.19}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Gibbs sampling}}{11}{figure.caption.20}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces A ring lattice}}{25}{figure.caption.55}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Plot of the RNN using weights as springs}}{16}{figure.caption.26}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Plot of the RNN with spectral analyses of the Laplacian Matrix }}{16}{figure.caption.27}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Weight distribution }}{17}{figure.caption.29}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Distribution of the absolute value of the weights}}{17}{figure.caption.30}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Distribution of the sum of the input connection weights on Whh}}{18}{figure.caption.32}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Distribution of the sum of the output connection weights on Whh}}{18}{figure.caption.33}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Error on the test set when removing 1 neuron}}{19}{figure.caption.35}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces M1}}{21}{figure.caption.36}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces M2}}{21}{figure.caption.37}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces M3}}{22}{figure.caption.38}
+\contentsline {figure}{\numberline {3.11}{\ignorespaces M4}}{22}{figure.caption.39}
+\contentsline {figure}{\numberline {3.12}{\ignorespaces M5}}{23}{figure.caption.40}
+\contentsline {figure}{\numberline {3.13}{\ignorespaces M6}}{23}{figure.caption.41}
+\contentsline {figure}{\numberline {3.14}{\ignorespaces M7}}{24}{figure.caption.42}
+\contentsline {figure}{\numberline {3.15}{\ignorespaces Table presenting the value of d for the different metrics }}{24}{figure.caption.43}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces A ring lattice}}{27}{figure.caption.58}
+\addvspace {10\p@ }
