@@ -59,7 +59,7 @@ class MusicBrain:
 
         self.simple_RNN(100, self.r[1] - self.r[0])
 
-        hf_optimizer(self.p, self.inputs, self.s, self.costs, 0.5*(self.h + 1), self.ha).train(self.gradient_dataset, self.cg_dataset, initial_lambda=0.5, mu=1.0, preconditioner=False, validation=self.valid_dataset, plot_cost_file="plot_cost_music.pkl", num_updates=20, save_callback=self.save)
+        hf_optimizer(self.p, self.inputs, self.s, self.costs, 0.5*(self.h + 1), self.ha).train(self.gradient_dataset, self.cg_dataset, initial_lambda=0.5, mu=1.0, preconditioner=False, validation=self.valid_dataset, plot_cost_file="plot_cost_music.pkl", num_updates=2000, save_callback=self.save)
 
 # single-layer recurrent neural network with sigmoid output, only last time-step output is significant
     def simple_RNN(self, nh, n_in, load_file=None):
@@ -90,7 +90,7 @@ class MusicBrain:
         y = T.nnet.sigmoid(s)
         loss = -t*T.log(y + 1e-14) - (1-t)*T.log((1-y) + 1e-14)
         acc = T.neq(T.round(y), t)
-        self.generate_function = theano.function([x], T.round(y))
+        self.generate_function = theano.function([x], y)
         self.p, self.inputs,  self.s, self.costs, self.h, self.ha = p, [x], s, [T.mean(loss), T.mean(acc)], h, ha
 
     def generate_sample(self, length=200, filename="sample.mid"):
@@ -100,8 +100,14 @@ class MusicBrain:
             seq = numpy.array(piece[-self.seq_length:])
             #print seq.shape
             new = self.generate_function(seq)
+            sample = numpy.random.random(88)
+            new_n = new > sample
+            #while numpy.sum(new_n) == 0:
+            #    new += 0.001
+            #    new_n = new > sample
+            
             #print new
-            piece = numpy.vstack([piece, new])
+            piece = numpy.vstack([piece, new_n])
             #print piece.shape
         piano_roll = piece
         midiwrite(filename, piano_roll, self.r, self.dt)
