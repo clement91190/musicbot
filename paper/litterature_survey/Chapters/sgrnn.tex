@@ -12,14 +12,13 @@
 
 %\section{State of the Art}
 
-\section{Introduction}
+\section{Motivation}
 
-In this Chapter, we introduce Self-Growing Recurrent Neural Network (SGRNN), which is a Recurrent Neural Network that change its architecture as well as its weights during learning. In the standard Recurrent Neural Network, the hidden-to-hidden weight Matrix ($W_{hh}$) is considered as a dense Matrix in the calculation. This means that each neuron is connected to all the other neurons and that each weight takes the same ammount of computation time to update. Therefore, the learning step in the hessian free optimization (HFO) or stochastic gradient descent compute an update for each elements of this weight matrix. However, from a biological perspective, it makes sense to restrict the connections of a neuron to neuron that are near it. Performing such a change in the architecture of a RNN, reduce the number of connections complexity from $n^2$ to $n$. The same observation can be made for inputs and outputs weights : All neuron connections to the inputs and the the outputs are not necessary. Such an architecture change can reduce the computation time for the same number of neurons. It can also provide a structure in the weights matrices to simplify the scalability and the implementation of this model on distributed systems, by performing a cluster analyses of the weight matrix.
+In this Chapter, we introduce Self-Growing Recurrent Neural Network (SGRNN), which is a Recurrent Neural Network that change its architecture as well as its weights during learning. In the standard Recurrent Neural Network, the hidden-to-hidden weight Matrix ($W_{hh}$) is considered as a dense Matrix in the calculation. This means that each neuron is connected to all the other neurons and that each weight takes the same ammount of computation time to update. Therefore, the learning step in the hessian free optimization (HFO) or stochastic gradient descent compute an update for each elements of this weight matrix. However, from a biological perspective, it makes sense to restrict the connections of a neuron to neuron that are near it. Performing such a change in the architecture of a RNN, reduce the number of connections complexity from $O(n^2)$ to $O(n)$. The same observation can be made for inputs and outputs weights as each neuron in the RNN neuron have inputs and outputs weights. Such an architecture change could reduce the computation time as well as the memory usage for the same number of neurons using sparse matrix representation. 
 
 \section{SGRNN}
 
-The SGRNN structure is the same as the standard RNN. The difference come from the learning algorithm.
-
+The SGRNN structure is the same as the standard RNN. The difference come from the learning algorithm. The goal is to introduce a modification of the architecture during learning. Every $k$ steps of a Hessian Free Optimization or Stochastic Gradient Descent ( which are the state of the art method used to train RNNs) we perform this modification. Such a modification has to keep the global functioning of the RNN so that the previous learning steps are not useless. Based on the previous chapter experiments, we propose an empirical solution in performing such a step called the \verb?evolutionStep? in Algorithm 1. The goal of this step is to delete neurons and connections which have a small or no contribution to the model and duplicate neurons and add connections where it seems important.   
 $$
 \begin{array}{rcr} 
     h_0 & = & a(W_{hx}  * x_0 + b_{init} + b_h)  \\ 
@@ -35,11 +34,10 @@ $$
     \begin{algorithmic}
     \STATE $ weightsInit() $
     \WHILE{$continueTraining$}
-        \FOR{$i \in [1: nSteps]$}
+        \FOR{$i \in [1: K]$}
             \STATE $HFOStep()$
         \ENDFOR
         \STATE $evolutionStep()$
-        \STATE $reorderingStep()$
     \ENDWHILE
     
     \end{algorithmic}
@@ -50,48 +48,33 @@ The Hessian Free Optimization \cite{martens2011learning} is implemented using th
 
 Theano handles the differenciation automaticly once provided an expression such as the one defining RNNs. It is then possible to use the gradient function to obtain the gradient of this expression with respect to a list of parameters.
 
-However the SGRNN step requires only to compute the gradient over the non-zero values in the sparse matrix representation of the hidden-to-hidden weight matrix. Therefore, we provide a mask to the RNN implementation, and we replace $W_{hh}$ with the hadamard product $M \circle W_{hh}$ , where $M$ is the mask, ie a binarry matrix that contains $1$ where there is a connection between neurons and $0$ elsewhere. Using this trick it is possible to use the classical Hessian free optimization (or a stochastic gradient descent) as the gradient of the network in respect to $Whh_{ij}$ is guaranted to be null if there is no connection between neuron $i$ and $j$. 
+However the SGRNN step requires only to compute the gradient over the non-zero values in the sparse matrix representation of the hidden-to-hidden weight matrix. Therefore, we provide a mask to the RNN implementation, and we replace $W_{hh}$ with the hadamard product $M \circle W_{hh}$ , where $M$ is the mask, ie a binarry matrix that contains $1$ where there is a connection between neurons and $0$ elsewhere. Using this trick it is possible to use the classical Hessian free optimization (or a stochastic gradient descent) as the gradient of the network in respect to $Whh_{ij}$ is guaranted to be null if there is no connection between neuron $i$ and $j$. However this implementation does not bring speed nor memory improvements of the HFO step (see Future Work) 
 
 
 \subsection{Weights Initialization}
 
-    In a standard RNN, the weight matrices are randomly initialized, in order to prevent symmetry that could not be broken during the learning phase within the model. For SGRNN we initialize the RNN with a small number of neurons using a K-band matrix with the top right and bottom left corner also filled, ie a sparse matrix, with non-zero weights on the diagonal and on the K diagonals on either side of the matrix as well as on the K diagonals in both top-left and bottom-right corner.
-
-$$Whh_{ij} = 0 if \exists t \in \mathbf{N}, abs(i - j - t * n) < k $$ where $n$ is the number of neurons.
-
-This weight matrix initialize the Neural Network as a ring lattice with self connections. 
-
-TODO CHANGE PICTURE WITH SELF CONNECTIONS.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[scale=0.7]{Figures/ring_lattice.png}
-    \rule{35em}{0.5pt}
-    \caption[A ring lattice]{A ring lattice}
-    \label{fig:ring_lattice}
-\end{figure}
-
-We initialize the input and output weight matrices as well as the biases using the same process as in the RNN model. 
-The parameters of the model for the hessian free optimization step are only the non-zero weights. 
+    In a standard RNN, the weight matrices are randomly initialized, in order to prevent symmetry that could not be broken during the learning phase within the model. The same initialization techniques are used. However, a smaller number of neurons is required as new neurons will be introduced during training.  
 
 \subsection{Evolution Step}
 
-The evolution step consist of three different steps:
+The evolution step consist of two different steps that we name using the Gentic Algorithm conventions as they have a similar meaning. 
 \begin{itemize}
-    \item Adding weights: if two consecutive weights ($ab$, $bc$) are above a weight treshold, we diminush them by half and create a new connection ($ac$)
-    \item deleting weights that are near zero
-    \item Adding neurons: We duplicate with a small noise (on the connections to break the symmetry) the neuron with the highest clustering coefficient. 
+    \item A selection step, where we delete connections and Neurons.
+    \item A cross-over step, where we introduce new neurons and connections. 
 \end{itemize}
 
+\subsubsection{Selection}
 
-\subsection{Reordering Step}
-    The goal of the reordering step is to switch neurons position in $Whh$ so that the matrix keeps the same shape as in the initialization step. 
+In order to perform the selection step we need an estimation of the worth of neuron or a connection. Based on the experiments in the previous chapter, we saw that none of the metric that seemed natural to judge the worth of a neuron or a connection (for example the sum of the absolute value of the weights ) provide satisfying results. Therefor in this project we used the same approach that was used as the benchmark to judge the worth of a neuron in the previous chapter: We delete the neuron and mesure the performance of the network on a validation set. 
 
+\subsubsection{Cross-Over}
 
+In order to introduce new neurons without, "breaking" all the networks dynamic and having to start learning from the start, we use a technique to duplicate neurons. Using the following model: 
 
+$TODO ADD HERE$ 
 
+Using this technique we can easily introduce new neurons in the network.
 
-
-
+Finding neurons/connections based on the performance of the network on a validation set witout them provide a choice for deleting neurons. However, finding the neurons that are fitted to be duplicated is trickier as we have no direct way of ordering the neurons for this. Therefore in this project we made the following assumption : The neurons that are the most necessary to the network are the best candidate to be duplicated. We discuss the validity of this assumption in the conlusion and Future work chapter.  
 
 

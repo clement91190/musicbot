@@ -20,13 +20,14 @@
 \contentsline {subsection}{\numberline {3.2.4}Sums of weights}{17}{subsection.31}
 \contentsline {subsection}{\numberline {3.2.5}Removing neurons of the network.}{18}{subsection.34}
 \contentsline {chapter}{\numberline {4} Self-Growing Recurrent Neural Network}{25}{chapter.44}
-\contentsline {section}{\numberline {4.1}Introduction}{25}{section.45}
+\contentsline {section}{\numberline {4.1}Motivation}{25}{section.45}
 \contentsline {section}{\numberline {4.2}SGRNN}{26}{section.46}
-\contentsline {subsection}{\numberline {4.2.1}Implementation of the Hessian Free Optimization step}{26}{subsection.56}
-\contentsline {subsection}{\numberline {4.2.2}Weights Initialization}{27}{subsection.57}
-\contentsline {subsection}{\numberline {4.2.3}Evolution Step}{28}{subsection.59}
-\contentsline {subsection}{\numberline {4.2.4}Reordering Step}{28}{subsection.60}
-\contentsline {chapter}{\numberline {5}Conclusion and Future Work}{29}{chapter.61}
+\contentsline {subsection}{\numberline {4.2.1}Implementation of the Hessian Free Optimization step}{26}{subsection.55}
+\contentsline {subsection}{\numberline {4.2.2}Weights Initialization}{27}{subsection.56}
+\contentsline {subsection}{\numberline {4.2.3}Evolution Step}{27}{subsection.57}
+\contentsline {subsubsection}{\numberline {4.2.3.1}Selection}{27}{subsubsection.58}
+\contentsline {subsubsection}{\numberline {4.2.3.2}Cross-Over}{28}{subsubsection.59}
+\contentsline {chapter}{\numberline {5}Conclusion and Future Work}{29}{chapter.60}
 \vspace {2em}
 \vspace {2em}
-\contentsline {chapter}{Bibliography}{30}{dummy.62}
+\contentsline {chapter}{Bibliography}{30}{dummy.61}
