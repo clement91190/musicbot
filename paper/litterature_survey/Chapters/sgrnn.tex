@@ -57,7 +57,7 @@ However the SGRNN step requires only to compute the gradient over the non-zero v
 
 \subsection{Evolution Step}
 
-The evolution step consist of two different steps that we name using the Gentic Algorithm conventions as they have a similar meaning. 
+The evolution step consist of two different steps that we named using the Gentic Algorithm conventions as they have a similar meaning. 
 \begin{itemize}
     \item A selection step, where we delete connections and Neurons.
     \item A cross-over step, where we introduce new neurons and connections. 
@@ -76,5 +76,35 @@ $TODO ADD HERE$
 Using this technique we can easily introduce new neurons in the network.
 
 Finding neurons/connections based on the performance of the network on a validation set witout them provide a choice for deleting neurons. However, finding the neurons that are fitted to be duplicated is trickier as we have no direct way of ordering the neurons for this. Therefore in this project we made the following assumption : The neurons that are the most necessary to the network are the best candidate to be duplicated. We discuss the validity of this assumption in the conlusion and Future work chapter.  
+
+
+\section{Experiment}
+
+We tested the SGRNN on a dataset of Music files in the MIDI format. Using code sample from \cite{boulanger2012modeling} to parse Midi files, we convert the files into a vector of bits, 1 for each timestep (sampling every 0.3 sec), where notes from the piano keyboard are numeroted (from $0$ to $88$ ) and $0$ corresponds to the fact that the note is not "on" for this timestep and $1$ that the note is currently "on". Using this representation method it is then possible to create feed this sequencial data to a RNN. During training we tested with $10$ timesteps-long sequences, to produce a large enough dataset of sequence (though for this particular problem, it seems more suited to experiment with longer sequences) The network is asked on the 9-th timestep to predict the entry of the 10th. By using this technique we train the network to predict what are the possible following of a sequence. As the prediction is a vector of float within $[0, 1]$ we use the cross-correlation error in the Hessian Free optimization 
+$$ (-t* T.log(y) - (1-t)* T.log(1-y)).mean() $$
+
+We also mesure the prediction error on the training set as well as a validation set, by compairing the value of ($o>0.5$) and the corresponding bit for every prediction of the newwork.
+
+The network is trained to predict the next element after a sequence and therefore we can use it to generate sequences. We initialize the network with a random sequence or a sequence from the test set and let it preditct the next element. Then we shift all values in the sequence from 1 and place the precedent predicted value as the last element, and thatway we predict a new element. We then shift the sequence again and place the second value to the end. By repeting this steps many times, we can generate music. 
+
+
+
+    
+\begin{figure}[htbp]
+    \centering
+\includegraphics[scale=0.5]{Figures/init_piano_roll.png}
+    \rule{35em}{0.5pt}
+    \caption[Generated music at initialization of the RNN]{Generated music at initialization of the RNN}
+    \label{fig:init_roll}
+\end{figure}
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[scale=0.5]{Figures/piano_roll.png}
+    \rule{35em}{0.5pt}
+    \caption[Generated music after training]{Generated music after training}
+    \label{fig:piano_roll}
+\end{figure}
 
 

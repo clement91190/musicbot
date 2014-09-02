@@ -7,6 +7,7 @@ import random
 import theano.tensor as T
 from RNN.theano_hf.hf import hf_optimizer, SequenceDataset
 from midi.utils import midiread, midiwrite
+from RNN.SGRNN import evolution_step
 import pylab
 
 
@@ -61,9 +62,33 @@ class MusicBrain:
 
         hf_optimizer(self.p, self.inputs, self.s, self.costs, 0.5*(self.h + 1), self.ha).train(self.gradient_dataset, self.cg_dataset, initial_lambda=0.5, mu=1.0, preconditioner=False, validation=self.valid_dataset, plot_cost_file="plot_cost_music.pkl", num_updates=2000, save_callback=self.save)
 
+
+    def train_SGRNN(self):
+        self.simple_RNN(20, self.r[1] - self.r[0])
+        self.mask = numpy.ones((20,20), dtype=theano.config.floatX)
+
+        for i in range(10):
+            hf_optimizer(self.p, self.inputs, self.s, self.costs, 0.5*(self.h + 1), self.ha).train(self.gradient_dataset, self.cg_dataset, initial_lambda=0.5, mu=1.0, preconditioner=False, validation=self.valid_dataset, plot_cost_file="plot_cost_music.pkl", num_updates=3, save_callback=self.save)
+            self.p, self.mask = evolution_step([i.get_value() for i in self.p], self.mask)
+            self.simple_RNN(self, 0, 0, p_init=self.p, mask_whh=self.mask)
+
+        #fine tunning
+        hf_optimizer(self.p, self.inputs, self.s, self.costs, 0.5*(self.h + 1), self.ha).train(self.gradient_dataset, self.cg_dataset, initial_lambda=0.5, mu=1.0, preconditioner=False, validation=self.valid_dataset, plot_cost_file="plot_cost_music.pkl", num_updates=3, save_callback=self.save)
+
+
 # single-layer recurrent neural network with sigmoid output, only last time-step output is significant
-    def simple_RNN(self, nh, n_in, load_file=None):
-        if load_file is None:
+    def simple_RNN(self, nh, n_in, load_file=None, p_init=None, mask_whh=None):
+        if p_init is not None:
+            [Wx, Wh, Wy, bh, by, h0] = p_init
+            Wx = theano.shared(Wx).astype(theano.config.floatX)
+            Wh = theano.shared(Wh).astype(theano.config.floatX)
+            Wy = theano.shared(Wy).astype(theano.config.floatX)
+            bh = theano.shared(bh).astype(theano.config.floatX)
+            by = theano.shared(by).astype(theano.config.floatX)
+            h0 = theano.shared(h0).astype(theano.config.floatX)
+            p = [Wx, Wh, Wy, bh, by, h0]
+
+        elif load_file is None:
             Wx = theano.shared(0.2 * numpy.random.uniform(-1.0, 1.0, (n_in, nh)).astype(theano.config.floatX))
             Wh = theano.shared(0.2 * numpy.random.uniform(-1.0, 1.0, (nh, nh)).astype(theano.config.floatX))
             Wy = theano.shared(0.2 * numpy.random.uniform(-1.0, 1.0, (nh, n_in)).astype(theano.config.floatX))
@@ -71,13 +96,18 @@ class MusicBrain:
             by = theano.shared(numpy.zeros(n_in, dtype=theano.config.floatX))
             h0 = theano.shared(numpy.zeros(nh, dtype=theano.config.floatX))
             p = [Wx, Wh, Wy, bh, by, h0]
+
         else:
             with open(load_file, 'r') as f:
                 p = [Wx, Wh, Wy, bh, by, h0] = cPickle.load(f)
         x = T.matrix()
 
+
         def recurrence(x_t, h_tm1):
-            ha_t = T.dot(x_t, Wx) + T.dot(h_tm1, Wh) + bh
+            if mask_whh is not None:
+                ha_t = T.dot(x_t, Wx) + T.dot(h_tm1, Wh * mask_whh) + bh
+            else:
+                ha_t = T.dot(x_t, Wx) + T.dot(h_tm1, Wh) + bh
             h_t = T.tanh(ha_t)
             s_t = T.dot(h_t, Wy) + by
             return [ha_t, h_t, s_t]
@@ -132,7 +162,8 @@ class MusicBrain:
 def main():
     m_brain = MusicBrain()
     try:
-        m_brain.train_classical_music()
+        #m_brain.train_classical_music()
+        m_brain.train_SGRNN()
     except KeyboardInterrupt:
         print 'Interrupted by user.'
     m_brain.generate_sample()
