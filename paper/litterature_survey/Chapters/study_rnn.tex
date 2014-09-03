@@ -235,3 +235,5 @@ In order to make the figure \ref{fig:m4} we use the clustering index  : TODO ADD
 
 
 \subsection{Compairing connections in the network.}
+
+In this section we perform the same analyses on weighted connections. By removing the connexions one by one, and testing the network on a validation dataset, we obtain a score for each connection. This calculation is in complexity comparable to the number of connexions, which is $n ^2$ for a classical dense RNN. For this experiment we reduce the validation set size because of the complexity to a $1000$ sequences.

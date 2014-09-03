@@ -12,8 +12,9 @@ import pylab
 
 
 class MusicBrain:
-    def __init__(self):
+    def __init__(self, plot_file):
         self.r = (21, 109)
+        self.plot_file = plot_file
         self.seq_length = 10
         self.dt = 0.3
         self.show = True
@@ -56,21 +57,21 @@ class MusicBrain:
         self.cg_dataset = SequenceDataset(self.train, batch_size=None, number_batches=500)
         self.valid_dataset = SequenceDataset(self.valid, batch_size=None, number_batches=500)
 
-    def train_classical_music(self):
+    def train_classical_music(self, n_neurons):
 
-        self.simple_RNN(100, self.r[1] - self.r[0])
+        self.simple_RNN(n_neurons, self.r[1] - self.r[0])
 
-        hf_optimizer(self.p, self.inputs, self.s, self.costs, 0.5*(self.h + 1), self.ha).train(self.gradient_dataset, self.cg_dataset, initial_lambda=0.5, mu=1.0, preconditioner=False, validation=self.valid_dataset, plot_cost_file="plot_cost_music.pkl", num_updates=2000, save_callback=self.save)
+        hf_optimizer(self.p, self.inputs, self.s, self.costs, 0.5*(self.h + 1), self.ha).train(self.gradient_dataset, self.cg_dataset, initial_lambda=0.5, mu=1.0, preconditioner=False, validation=self.valid_dataset, plot_cost_file=self.plot_file, num_updates=2000, save_callback=self.save)
 
     def train_SGRNN(self):
         self.simple_RNN(20, self.r[1] - self.r[0])
         self.mask = numpy.ones((20, 20), dtype=theano.config.floatX)
-        self.initial_lambda = 0.5
+        self.lamb = 0.5
         self.mu = 1.0
 
         for i in range(10):
             optim = hf_optimizer(self.p, self.inputs, self.s, self.costs, 0.5*(self.h + 1), self.ha)
-            optim.train(self.gradient_dataset, self.cg_dataset, initial_lambda=self.lambda_, mu=self.mu, preconditioner=False, validation=self.valid_dataset, plot_cost_file="plot_cost_music.pkl", num_updates=5, save_callback=self.save)
+            optim.train(self.gradient_dataset, self.cg_dataset, initial_lambda=self.lamb, mu=self.mu, preconditioner=False, validation=self.valid_dataset, plot_cost_file=self.plot_file, num_updates=5, save_callback=self.save)
             self.lamb = optim.lambda_
             self.mu = optim.mu
             self.p, self.mask = evolution_step([i.get_value() for i in self.p], self.mask, self.valid_dataset)
@@ -78,7 +79,7 @@ class MusicBrain:
 
         #fine tunning
         optim = hf_optimizer(self.p, self.inputs, self.s, self.costs, 0.5*(self.h + 1), self.ha)
-        optim.train(self.gradient_dataset, self.cg_dataset, initial_lambda=0.5, mu=1.0, preconditioner=False, validation=self.valid_dataset, plot_cost_file="plot_cost_music.pkl", num_updates=1, save_callback=self.save)
+        optim.train(self.gradient_dataset, self.cg_dataset, initial_lambda=0.5, mu=1.0, preconditioner=False, validation=self.valid_dataset, plot_cost_file=self.plot_file, num_updates=1, save_callback=self.save)
 
 
 # single-layer recurrent neural network with sigmoid output, only last time-step output is significant
@@ -165,7 +166,8 @@ class MusicBrain:
 
 
 def main():
-    m_brain = MusicBrain()
+    plot_file = "sgrnn_plot.pkl"
+    m_brain = MusicBrain(plot_file)
     try:
         #m_brain.train_classical_music()
         m_brain.train_SGRNN()
