@@ -14,15 +14,18 @@
 \contentsline {figure}{\numberline {3.5}{\ignorespaces Distribution of the sum of the input connection weights on Whh}}{18}{figure.caption.32}
 \contentsline {figure}{\numberline {3.6}{\ignorespaces Distribution of the sum of the output connection weights on Whh}}{18}{figure.caption.33}
 \contentsline {figure}{\numberline {3.7}{\ignorespaces Error on the test set when removing 1 neuron}}{19}{figure.caption.35}
-\contentsline {figure}{\numberline {3.8}{\ignorespaces M1}}{21}{figure.caption.36}
-\contentsline {figure}{\numberline {3.9}{\ignorespaces M2}}{21}{figure.caption.37}
-\contentsline {figure}{\numberline {3.10}{\ignorespaces M3}}{22}{figure.caption.38}
-\contentsline {figure}{\numberline {3.11}{\ignorespaces M4}}{22}{figure.caption.39}
-\contentsline {figure}{\numberline {3.12}{\ignorespaces M5}}{23}{figure.caption.40}
-\contentsline {figure}{\numberline {3.13}{\ignorespaces M6}}{23}{figure.caption.41}
-\contentsline {figure}{\numberline {3.14}{\ignorespaces M7}}{24}{figure.caption.42}
-\contentsline {figure}{\numberline {3.15}{\ignorespaces Table presenting the value of d for the different metrics }}{24}{figure.caption.43}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces M1}}{22}{figure.caption.36}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces M2}}{22}{figure.caption.37}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces M3}}{23}{figure.caption.38}
+\contentsline {figure}{\numberline {3.11}{\ignorespaces M4}}{23}{figure.caption.39}
+\contentsline {figure}{\numberline {3.12}{\ignorespaces M5}}{24}{figure.caption.40}
+\contentsline {figure}{\numberline {3.13}{\ignorespaces M6}}{24}{figure.caption.41}
+\contentsline {figure}{\numberline {3.14}{\ignorespaces M7}}{25}{figure.caption.42}
+\contentsline {figure}{\numberline {3.15}{\ignorespaces Table presenting the value of d for the different metrics }}{25}{figure.caption.43}
+\contentsline {figure}{\numberline {3.16}{\ignorespaces Sorted Worth of the Connection}}{26}{figure.caption.45}
+\contentsline {figure}{\numberline {3.17}{\ignorespaces Score Vs Weigth of the connections}}{26}{figure.caption.46}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Generated music at initialization of the RNN}}{29}{figure.caption.61}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Generated music after training}}{30}{figure.caption.62}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Learning curves}}{34}{figure.caption.64}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Generated music at initialization of the RNN}}{34}{figure.caption.65}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Generated music after training}}{35}{figure.caption.66}
 \addvspace {10\p@ }

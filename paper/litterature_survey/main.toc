@@ -17,18 +17,21 @@
 \contentsline {subsection}{\numberline {3.2.1}Problem}{14}{subsection.24}
 \contentsline {subsection}{\numberline {3.2.2}Plot of the RNN}{14}{subsection.25}
 \contentsline {subsection}{\numberline {3.2.3}Weight distribution}{17}{subsection.28}
-\contentsline {subsection}{\numberline {3.2.4}Sums of weights}{17}{subsection.31}
-\contentsline {subsection}{\numberline {3.2.5}Removing neurons of the network.}{18}{subsection.34}
-\contentsline {chapter}{\numberline {4} Self-Growing Recurrent Neural Network}{25}{chapter.44}
-\contentsline {section}{\numberline {4.1}Motivation}{25}{section.45}
-\contentsline {section}{\numberline {4.2}SGRNN}{26}{section.46}
-\contentsline {subsection}{\numberline {4.2.1}Implementation of the Hessian Free Optimization step}{26}{subsection.55}
-\contentsline {subsection}{\numberline {4.2.2}Weights Initialization}{27}{subsection.56}
-\contentsline {subsection}{\numberline {4.2.3}Evolution Step}{27}{subsection.57}
-\contentsline {subsubsection}{\numberline {4.2.3.1}Selection}{27}{subsubsection.58}
-\contentsline {subsubsection}{\numberline {4.2.3.2}Cross-Over}{28}{subsubsection.59}
-\contentsline {section}{\numberline {4.3}Experiment}{28}{section.60}
-\contentsline {chapter}{\numberline {5}Conclusion and Future Work}{31}{chapter.63}
+\contentsline {subsection}{\numberline {3.2.4}Sums of weights}{18}{subsection.31}
+\contentsline {section}{\numberline {3.3}Results : comparing neurons of the network.}{19}{section.34}
+\contentsline {section}{\numberline {3.4}Results: Comparing connections in the network.}{25}{section.44}
+\contentsline {chapter}{\numberline {4} Self-Growing Recurrent Neural Network}{28}{chapter.47}
+\contentsline {section}{\numberline {4.1}Motivation}{28}{section.48}
+\contentsline {section}{\numberline {4.2}SGRNN}{29}{section.49}
+\contentsline {subsection}{\numberline {4.2.1}Implementation of the Hessian Free Optimization step}{29}{subsection.58}
+\contentsline {subsection}{\numberline {4.2.2}Weights Initialization}{30}{subsection.59}
+\contentsline {subsection}{\numberline {4.2.3}Evolution Step}{30}{subsection.60}
+\contentsline {subsubsection}{\numberline {4.2.3.1}Selection}{30}{subsubsection.61}
+\contentsline {subsubsection}{\numberline {4.2.3.2}Cross-Over}{31}{subsubsection.62}
+\contentsline {section}{\numberline {4.3}Experiment}{32}{section.63}
+\contentsline {chapter}{\numberline {5}Conclusion and Future Work}{36}{chapter.67}
+\contentsline {section}{\numberline {5.1}Conclusion}{36}{section.68}
+\contentsline {section}{\numberline {5.2}Future Work}{37}{section.69}
 \vspace {2em}
 \vspace {2em}
-\contentsline {chapter}{Bibliography}{32}{dummy.64}
+\contentsline {chapter}{Bibliography}{38}{dummy.70}

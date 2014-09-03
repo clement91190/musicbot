@@ -5,6 +5,11 @@
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
+\bibitem[Hochreiter and Schmidhuber(1997)]{hochreiter1997long}
+Sepp Hochreiter and J{\"u}rgen Schmidhuber.
+\newblock Long short-term memory.
+\newblock \emph{Neural computation}, 9\penalty0 (8):\penalty0 1735--1780, 1997.
+
 \bibitem[Schmidhuber(2014)]{schmidhuber2014deep}
 Juergen Schmidhuber.
 \newblock Deep learning in neural networks: An overview.
@@ -41,11 +46,6 @@ Paul~J Werbos.
 Alex Krizhevsky, Ilya Sutskever, and Geoffrey~E Hinton.
 \newblock Imagenet classification with deep convolutional neural networks.
 \newblock In \emph{NIPS}, volume~1, page~4, 2012.
-
-\bibitem[Hochreiter and Schmidhuber(1997)]{hochreiter1997long}
-Sepp Hochreiter and J{\"u}rgen Schmidhuber.
-\newblock Long short-term memory.
-\newblock \emph{Neural computation}, 9\penalty0 (8):\penalty0 1735--1780, 1997.
 
 \bibitem[Pascanu et~al.(2012)Pascanu, Mikolov, and
   Bengio]{pascanu2012difficulty}

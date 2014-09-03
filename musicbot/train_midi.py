@@ -69,7 +69,7 @@ class MusicBrain:
         self.lamb = 0.5
         self.mu = 1.0
 
-        for i in range(10):
+        for i in range(9):
             optim = hf_optimizer(self.p, self.inputs, self.s, self.costs, 0.5*(self.h + 1), self.ha)
             optim.train(self.gradient_dataset, self.cg_dataset, initial_lambda=self.lamb, mu=self.mu, preconditioner=False, validation=self.valid_dataset, plot_cost_file=self.plot_file, num_updates=5, save_callback=self.save)
             self.lamb = optim.lambda_
@@ -79,7 +79,7 @@ class MusicBrain:
 
         #fine tunning
         optim = hf_optimizer(self.p, self.inputs, self.s, self.costs, 0.5*(self.h + 1), self.ha)
-        optim.train(self.gradient_dataset, self.cg_dataset, initial_lambda=0.5, mu=1.0, preconditioner=False, validation=self.valid_dataset, plot_cost_file=self.plot_file, num_updates=1, save_callback=self.save)
+        optim.train(self.gradient_dataset, self.cg_dataset, initial_lambda=0.5, mu=1.0, preconditioner=False, validation=self.valid_dataset, plot_cost_file=self.plot_file, num_updates=10, save_callback=self.save)
 
 
 # single-layer recurrent neural network with sigmoid output, only last time-step output is significant
@@ -166,11 +166,11 @@ class MusicBrain:
 
 
 def main():
-    plot_file = "sgrnn_plot.pkl"
+    plot_file = "40_n_plot.pkl"
     m_brain = MusicBrain(plot_file)
     try:
-        #m_brain.train_classical_music()
-        m_brain.train_SGRNN()
+        m_brain.train_classical_music(40)
+        #m_brain.train_SGRNN()
     except KeyboardInterrupt:
         print 'Interrupted by user.'
     m_brain.generate_sample()

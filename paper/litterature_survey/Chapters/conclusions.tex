@@ -4,7 +4,7 @@
 
 \label{Chapter 5} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
-\lhead{Chapter 5. \emph{Related Work}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
+\lhead{Chapter 5. \emph{Conclusion and Future Work}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
 
 %----------------------------------------------------------------------------------------
 %	SECTION 1
@@ -12,4 +12,17 @@
 
 %\section{State of the Art}
 
+\section{Conclusion} 
+    In the first part of this project we conducted an empiracl study on a trained RNN. This study showed that the current indicators such as the sum of the weights connected to a neuron or the clustering coefficient used in graph theory do not provide meaningful information on the network. The dynamics involved within a RNN are complex to modelize. In particular tentatives to order the neurons based on their importance is hard when considering only the graph structure without a validation dataset. We also proved similar unnatural behavior concerning the connections weights: if a near-zero weight is less likely to be important for the network, a large weight in a connection does not necessary means that this connection is important. Finally we showed that using a dense weight matrix for a RNN was not necessary on the memorization problem.  
+ 
 
+    The result obtained in the first chapter led to the design of Self Growing Recurrent Neural Network (SGRNN) a network that change its weights as well as its architecture during learning. By selecting neurons to be removed and performing a cloning of neurons, it is possible to dynamicly adjust the number of neurons for a given problem. This technique can also be used for pre-training a RNN. 
+
+
+\section{Future Work}
+
+The empirical work presented in Chapter 3, confirmed that the dynamics within RNN is complex and that works remains to grasp the interactions between neurons. In particular finding a way of knowing which neuron or cluster of neuron is important during computation for RNN might lead to significant progress in the training of such a network. It could potentially also have applications in neuroscience. As some of the indicators that seens "natural" failed to do this task, it would be interesting to apply a Machine Learning technique directly on the network to predict the score (or a metric with the same order relation) that the network obtains on a validation set, without this particular neuron or group of neurons. The same approach could also be applied directly on connections. 
+
+Also, based on the results obtained in this project, using sparse matrix respresentation could lead to good performance. Implementing an efficient Hessian Free Optimization algorithm for sparse matrix RNN is still needed, as we used "mask" to simulate sparse weight matrix in this project.
+
+Finally the flexibility of the technique used in SGRNNs to add and remove neurons could benefit from a better understanding of RNNs, especially in the choice of neurons to be cloned as we rely on the assumption that an important neuron should be cloned. This assumption would require to study the performance of the network to learn faster in the next learning steps, which requires a substantial ammount of computation. However, this is quite similar to the assumption used in genetic algorithms, where the cross-over is an operation between 2 "good" candidates.    
