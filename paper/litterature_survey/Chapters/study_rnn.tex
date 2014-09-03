@@ -109,7 +109,7 @@ The following figures are the plot of these sums on the network.
 
 A surprising result is that these two sums do not change as much as expected over the set of neurons : for all the neurons these two sums are within $[8.0; 12.0]$, it is therefore difficult two establish which neuron to remove based on this measure.
 
-\subsection{Removing neurons of the network.}
+\subsection{Compairing neurons of the network.}
 
 We can also directly measure the impact of a neuron on the network. By replacing all the inputs and output weights of the neuron with zeros, we destroy its impact on the RNN. It is then possible to test the network on a test set of sequence. We then display the results, that represent the percentage of errors on the test set. 
 
@@ -231,3 +231,7 @@ In order to make the figure \ref{fig:m4} we use the clustering index  : TODO ADD
     \rule{35em}{0.5pt}
     \caption[Table presenting the value of d for the different metrics ]{Table presenting the value of d for the different metrics}
 \end{figure}
+
+
+
+\subsection{Compairing connections in the network.}

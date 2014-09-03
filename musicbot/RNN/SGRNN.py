@@ -88,7 +88,7 @@ class SimpleRNN:
                 print i.shape, i.dtype
 
         print mask.shape, mask.dtype
-        raw_input()
+        #raw_input()
 
         Wx = theano.shared(Wx).astype(theano.config.floatX)
         self.Wh = theano.shared(Wh).astype(theano.config.floatX)
