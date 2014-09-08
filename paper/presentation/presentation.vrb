@@ -1,13 +1,17 @@
-\frametitle{Can you guess what this does ?}
-    \begin{verbatim}
-    def add_creature(m, size):
-        #m is a Metastructure
-        for i in range(size):
-            m.add_block()
-            m.follow_edge()
-            m.add_joint()
-            m.follow_edge()
+\frametitle{Cross-over (Repopulation)}
+        \begin{itemize}
+            \item We clone the last $k$ percent of the neurons
+        \end{itemize}
 
-        m.add_block()
+    \begin{verbatim}
+
+    def noise(self, vector):
+        #return vector
+        cov = 0.01 * np.diag(np.abs(vector))
+        res = np.random.multivariate_normal(vector,
+        cov)
+        return res.astype(theano.config.floatX)
     \end{verbatim}
+
+    We introduce noise so the parameters are different. Because HFO can make sense of small differences between parameters gradient.
 

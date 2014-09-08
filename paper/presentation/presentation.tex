@@ -232,7 +232,20 @@
     \caption[Table presenting the value of d for the different metrics ]{Table presenting the value of d for the different metrics}
 \end{figure}
 
-Results: None of the natural metrics have satisfying results.
+Results: None of the natural metrics have satisfying results which proves that the dynamic within a RNN is not well understood.
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Compairing the connections}
+    We perform the same experiment on each connection
+    \begin{center}
+        \begin{figure}
+            \includegraphics[width=0.6\textwidth]{Figures/score_worth_connection.png} 
+        \end{figure}
+    \end{center}
+    Result : Many connections could be removed without influencing the results of the network -> confirm the intuition of using sparse matrix.
 
 \end{frame}
 
@@ -254,27 +267,150 @@ Results: None of the natural metrics have satisfying results.
 \end{frame}
 
 
-\begin{frame}
-    \frametitle{Training : Backpropagation}
-    Backpropagation = Gradient descent on loss. 
 
-    \begin{itemize} 
-        \item use of the derivative of composition product to go back layer after layer...
-        \item backpropagation through time for RNNs
-    \end{itemize}
+\begin{frame}
+    \frametitle{Correlation weight and worth of a connection}
+    We sort the connections based on the absolute value of the weight and display in blue their "worth" based on the previous experiment.
     \begin{center}
         \begin{figure}
-            \includegraphics[width=0.4\textwidth]{Figures/network.jpeg} 
+            \includegraphics[width=0.4\textwidth]{Figures/score_vs_weight_connections.png} 
         \end{figure}
     \end{center}
+    Result: having a large weight, even if it is a necessary condition does not mean that the connection is important. 
 
 \end{frame}
 
    
 
 \section{Self Growing Recurrent Neural Networks}
+ 
+\begin{frame}
+    \frametitle{Goals}
+    \begin{itemize}
+          \item Use the previous experiments and results to build a new learning algorithm
+          \item Propose smooth modification of the architecture.
+    \end{itemize}
+
+    In this Chapter, we introduce Self-Growing Recurrent Neural Network (SGRNN), which is a Recurrent Neural Network that change its architecture as well as its weights during learning.
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Learning algorithm}
+    \begin{algorithm}
+        \caption{Learning algorithm}
+        \begin{algorithmic}
+        \STATE $ weightsInit() $
+        \WHILE{$continueTraining$}
+            \FOR{$i \in [1: K]$}
+                \STATE $HFOStep()$
+            \ENDFOR
+            \STATE $evolutionStep()$
+        \ENDWHILE
+        
+        \end{algorithmic}
+    \end{algorithm}
+    The evolution step is : 
+    \begin{itemize}
+        \item Selection
+        \item Cross-Over.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Preliminary computation and Selection}
+        \begin{itemize}
+            \item Before performing the selection and cross-over, we order the neurons based on their worth on a valid set ( as in the previous chapter)
+            \item During the selection we remove the first $k$ percent of the neurons  
+        \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{Cloning a neuron}
+     $$
+    \begin{array}{rcr} 
+        h_0 & = & a(W_{hx}  * x_0 + b_{init} + b_h)  \\ 
+        h_i & = & a(W_{hx}  * x_i + W _{hh} * h_{i-1} + b_h)  \\ 
+        \hat{y}_i & = & a'(W_{yh} + b_y)
+
+    \end{array}
+    $$
+    
+    The new cloned neuron has the same state.
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{Cloning a neuron}
+ 
+    \small\begin{verbatim}
+def insert_in_model(self, i):
+    #clone neurons i
+    self.whh = np.array(np.hstack([self.whh, 
+        np.matrix(self.noise(self.whh[:, i])).T])) 
+    self.whh[i] = 0.5 * self.whh[i]  
+    self.whh = np.vstack([self.whh, 
+        self.noise(self.whh[i])])
+    self.Wx = np.array(np.hstack([self.Wx, 
+        np.matrix(self.Wx[:, i]).T])) 
+    self.bh = np.hstack([self.bh, self.bh[i]]) 
+    self.h0 = np.hstack([self.h0, self.h0[i]])
+    self.Wy[:, i] = 0.5 * self.Wy[:, i]  
+    self.Wy = np.array(np.vstack([self.Wy, self.Wy[i]])) 
+    \end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Cross-over (Repopulation)}
+        \begin{itemize}
+            \item We clone the last $k$ percent of the neurons  
+        \end{itemize}
+
+    \begin{verbatim}
+
+    def noise(self, vector):
+        #return vector
+        cov = 0.01 * np.diag(np.abs(vector))
+        res = np.random.multivariate_normal(vector,
+        cov)
+        return res.astype(theano.config.floatX)
+    \end{verbatim}
+    
+    We introduce noise so the parameters are different. Because HFO can make sense of small differences between parameters gradient.
+
+\end{frame}
 
 \section{Application on natural problem : music generation}
+
+
+\begin{frame}
+    \frametitle{Music Data}
+    
+       To train the network we use a dataset of MIDI files from Chorales of J.S Bach
+       \begin{itemize}
+           \item We take samples of 10 timesteps long sequences of chords.
+           \item one bit for each note: 1 $\Rightarrow$ note is playing 0, $ \Rightarrow$ note is not playing
+           \item The network is trained to predict the bit vector for the next timestep
+       \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Result and demo}
+    We compare the learning curves of classical RNN with fixed number of neurons (20 (green and 50 (red)) and the SGRNN (blue)
+        \begin{figure}
+                \includegraphics[width=0.4\textwidth]{Figures/sgrnn_training.png} 
+        \end{figure}   
+    Demo : 
+    \begin{itemize}
+        \item sample before training
+        \item sample after training
+    \end{itemize}
+\end{frame}
 
 \begin{frame}
     \begin{center}
