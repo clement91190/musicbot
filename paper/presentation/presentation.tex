@@ -1,0 +1,292 @@
+%\documentclass{beamer}
+\documentclass[hyperref={pagelabel=false,colorlinks=true,linkcolor=blue,citecolor=blue},12pt]{beamer}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\usetheme{Warsaw}
+
+\title[Learning Music Representation using Recurrent Neural Networks]{Learning Music Representation using Recurrent Neural Networks}
+\author{Clément Jambou}
+\institute{Imperial College of London, Departement of Computing}
+\date{8 September 2014}
+
+
+\begin{document}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+  \tableofcontents[currentsection]
+  \end{frame} 
+}
+
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\begin{frame}
+\tableofcontents
+
+\end{frame}
+
+
+\section{State of the art and motivation}
+
+    \subsection{ State of the Art}
+
+\begin{frame}
+    \frametitle{Neural networks}
+
+    \begin{itemize} 
+        \item Feed Forward (FFN)
+        \item Recurrent (RNN)
+    \end{itemize}
+    \begin{center}
+        \begin{figure}
+            \includegraphics[width=0.3\textwidth]{Figures/network.jpeg} 
+            \hspace{1cm} \includegraphics[width=0.3\textwidth]{Figures/rnn.png} 
+        \end{figure}
+    \end{center}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{model of RNN}
+    Given a sequence of inputs: $x_1, x_2, ... x_t$ and the hidden states $h_1, h_2, ..., h_t$.
+    $$
+    \begin{array}{rcr} 
+        h_0 & = & a(W_{hx}  * x_0 + b_{init} + b_h)  \\ 
+        h_i & = & a(W_{hx}  * x_i + W _{hh} * h_{i-1} + b_h)  \\ 
+        \hat{y}_i & = & a'(W_{yh} + b_y)
+
+    \end{array}
+    $$
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Training : Backpropagation}
+    Backpropagation = Gradient descent on loss. 
+
+    \begin{itemize} 
+        \item use of the derivative of composition product to go back layer after layer...
+        \item backpropagation through time for RNNs
+    \end{itemize}
+    \begin{center}
+        \begin{figure}
+            \includegraphics[width=0.4\textwidth]{Figures/network.jpeg} 
+        \end{figure}
+    \end{center}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Vanishing gradient and Hessian Free Optimization}
+    Backpropagation = Gradient descent on loss. 
+
+    \begin{itemize} 
+        \item Deep $\Rightarrow$ vanishing gradient (one more layer = one more Matrix multiplication)
+        \item RNN : as deep as the number of timesteps. 
+    \end{itemize}
+    \begin{center}
+        \begin{figure}
+            \includegraphics[width=0.3\textwidth]{Figures/gradient_ellipse.jpg} 
+        \end{figure}
+    \end{center}
+
+    Solution : Use second order information.
+    Hessian Free Optimization use a quadratic approximation of the fitness function and performs the first steps of conjuguate gradient descent.
+
+\end{frame}
+
+\subsection{Motivation}
+
+\begin{frame}
+	\frametitle{Motivation:}
+    \begin{itemize}
+        \item Growth of computational power led to think : "The bigger network, the better."
+        \item Current RNN structure uses dense Matrix where the brain connections map is sparse. 
+    \end{itemize}
+    
+    \begin{itemize}
+
+     \item Number of Neurons in human brain : $\sim 10^{11}$ 
+     \item Number of Synapse in human brain : $\sim 10^{14}, 10 ^{15}$ 
+    \end{itemize}
+\end{frame}
+
+\section{Study of RNNs}
+
+ 
+\begin{frame}
+    \frametitle{Experiment:}
+    Pretrained RNN on a memory problem: 100 timesteps long sequences of bits. 
+    Loss: Cross correlation of the output of the last timestep and the first input (Remember the first input)
+    \begin{center}
+         \begin{figure}
+             \includegraphics[width=0.5\textwidth]{Figures/RNN.png}
+        \end{figure}
+    \end{center}
+    Training : 8 hours, with Hessian Free Optimization
+
+\end{frame}
+
+  
+\begin{frame}
+    \frametitle{Plotting}
+   Goal : Find a way of plotting the RNN.
+    \begin{itemize}
+        \item use weights as spring.
+        \item spectral analyses of Laplacian matrix.
+    \end{itemize}
+    \begin{center}
+         \begin{figure}
+            \includegraphics[width=0.3\textwidth]{Figures/weighted_graph_spring.png} 
+            \hspace{1cm} \includegraphics[width=0.3\textwidth]{Figures/weighted_graph_spectral.png} 
+        \end{figure}
+    \end{center}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Question : Are all the neurons useful?}
+    We remove one neuron at a time (by replacing its input/output weights in Whh with 0) and test the network on dataset. 
+    \begin{center}
+         \begin{figure}
+            \includegraphics[width=0.5\textwidth]{Figures/error_test_set_remove_neuron.png} 
+        \end{figure}
+    \end{center}
+    Results : Neurons importance is very unequal (though the sum of absolute value of the weights is very constrained) 
+    We order the neurons using this method to obtain the "worth" of a neuron.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Comparaison with classical metrics}
+    We compare the "worth" with different metrics
+    
+    \begin{itemize}
+        \item M1 : The sum of the absolute value of the in an out weights on the hidden-to-hidden connection
+        \item M2 : The sum of the in an out weights on the hidden-to-hidden connection
+        \item M3 : The absolute value of the sum of the in an out weights on the hidden-to-hidden connection
+        \item M4 : The clustering index
+        \item M5 : The absolute value of the ouput weights ( of the hidden to output matrix) 
+        \item M6 : The absolute value of the input weights ( of the hidden to output matrix) 
+        \item M7 : The sum of the two previous metrics.
+    \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Comparaison with classical metrics}
+    Backpropagation = Gradient descent on loss. 
+
+    \begin{itemize} 
+        \item use of the derivative of composition product to go back layer after layer...
+        \item backpropagation through time for RNNs
+    \end{itemize}
+    \begin{center}
+         \begin{figure}
+            \includegraphics[width=0.2\textwidth]{Figures/m1.png}
+            \hspace{0.1cm} \includegraphics[width=0.2\textwidth]{Figures/m2.png}
+            \hspace{0.1cm} \includegraphics[width=0.2\textwidth]{Figures/m3.png}
+            \hspace{0.1cm} \includegraphics[width=0.2\textwidth]{Figures/m4.png}
+        \end{figure}
+        \begin{figure}
+            \includegraphics[width=0.2\textwidth]{Figures/m5.png}
+            \hspace{1cm} \includegraphics[width=0.2\textwidth]{Figures/m6.png}
+            \hspace{1cm} \includegraphics[width=0.2\textwidth]{Figures/m7.png}
+        \end{figure}
+    \end{center}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Comparaison with classical metrics}
+
+\begin{figure}[!htb]
+    \centering
+    \begin{tabular}{|l|l|}
+        \hline
+        M1 & 3118 \\ \hline
+        M2 & 3294 \\ \hline
+        M3 & 3512 \\ \hline
+        M4 & 3388 \\ \hline
+        M5 & 3244 \\ \hline
+        M6 & \textbf{2944} \\ \hline
+        M7 & 3402 \\
+        \hline
+    \end{tabular}
+    \label{fig:metrics}
+    \rule{35em}{0.5pt}
+    \caption[Table presenting the value of d for the different metrics ]{Table presenting the value of d for the different metrics}
+\end{figure}
+
+Results: None of the natural metrics have satisfying results.
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Training : Backpropagation}
+    Backpropagation = Gradient descent on loss. 
+
+    \begin{itemize} 
+        \item use of the derivative of composition product to go back layer after layer...
+        \item backpropagation through time for RNNs
+    \end{itemize}
+    \begin{center}
+        \begin{figure}
+            \includegraphics[width=0.4\textwidth]{Figures/network.jpeg} 
+        \end{figure}
+    \end{center}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Training : Backpropagation}
+    Backpropagation = Gradient descent on loss. 
+
+    \begin{itemize} 
+        \item use of the derivative of composition product to go back layer after layer...
+        \item backpropagation through time for RNNs
+    \end{itemize}
+    \begin{center}
+        \begin{figure}
+            \includegraphics[width=0.4\textwidth]{Figures/network.jpeg} 
+        \end{figure}
+    \end{center}
+
+\end{frame}
+
+   
+
+\section{Self Growing Recurrent Neural Networks}
+
+\section{Application on natural problem : music generation}
+
+\begin{frame}
+    \begin{center}
+    Thank you
+    \end{center}
+\end{frame}
+
+%\frame[shrink=30] 
+%{ 
+%    \frametitle{References} 
+%    \bibliographystyle{alpha} 
+%    \bibliography{Bibliography.bib} 
+%}
+
+\end{document}

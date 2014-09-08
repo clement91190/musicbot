@@ -1,0 +1,44 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{SMMI08}
+
+\bibitem[Jae07]{jaeger2007echo}
+Herbert Jaeger.
+\newblock Echo state network.
+\newblock {\em Scholarpedia}, 2(9):2330, 2007.
+
+\bibitem[KS04]{aibo}
+N.~Kohl and P.~Stone.
+\newblock Machine learning for fast quadrupedal locomotion.
+\newblock In {\em Proceedings of the National Conference on Artificial
+  Intelligence}, pages 611--616. Menlo Park, CA; Cambridge, MA; London; AAAI
+  Press; MIT Press; 1999, 2004.
+
+\bibitem[LFB94]{lewis}
+M.A. Lewis, A.H. Fagg, and G.~Bekey.
+\newblock Genetic algorithms for gait synthesis in a hexapod robot.
+\newblock {\em Recent trends in mobile robots}, pages 317--331, 1994.
+
+\bibitem[MI05]{Marbach}
+D.~Marbach and A.J. Ijspeert.
+\newblock Online optimization of modular robot locomotion.
+\newblock In {\em Mechatronics and Automation, 2005 IEEE International
+  Conference}, volume~1, pages 248--253. IEEE, 2005.
+
+\bibitem[Rom]{mitcubes}
+John Romanishin.
+\newblock Mit's m blocks toward modular robotics.
+\newblock
+  "http://web.mit.edu/newsoffice/2013/simple-scheme-for-self-assembling-robots-1004.html".
+
+\bibitem[S{\etalchar{+}}05]{ODE}
+Russell Smith et~al.
+\newblock Open dynamics engine, 2005.
+
+\bibitem[SMMI08]{Sproewitz}
+Alexander Sproewitz, Rico Moeckel, J{\'e}r{\^o}me Maye, and Auke~Jan Ijspeert.
+\newblock Learning to move in modular robots using central pattern generators
+  and online optimization.
+\newblock {\em The International Journal of Robotics Research},
+  27(3-4):423--443, 2008.
+
+\end{thebibliography}

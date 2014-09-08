@@ -1,0 +1,315 @@
+%\documentclass{beamer}
+\documentclass[hyperref={pagelabel=false,colorlinks=true,linkcolor=blue,citecolor=blue},12pt]{beamer}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\usetheme{Warsaw}
+
+
+\title[Learning walking skills and Laws of Commands for modular Robots]{Learning walking skills and Laws of Commands for modular Robots}
+\author{Clément Jambou}
+\institute{Imperial College of London, Departement of Computing}
+\date{1st May 2014}
+
+
+\begin{document}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+  \tableofcontents[currentsection]
+  \end{frame} 
+}
+
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\begin{frame}
+\tableofcontents
+
+\end{frame}
+
+
+\section{Previous work and motivation}
+
+    \subsection{ Motivation}
+
+\begin{frame}
+    \frametitle{Limits of classic approach of automation.}
+Automation brings many solutions to Robotics problems, but it is not efficient on some complex problems, in particularly when it involves:
+    \begin{itemize} 
+        \item non-linearity
+        \item too many degrees of freedom
+    \end{itemize}
+    \begin{center}
+        \begin{figure}
+            \includegraphics[width=0.15\textwidth]{baby.jpg} 
+            \hspace{1cm} \includegraphics[width=0.25\textwidth]{nao.jpg} 
+        \end{figure}
+    \end{center}
+
+\end{frame}
+
+\subsection{Simulation...}
+
+\begin{frame}
+	\frametitle{Simulation}
+    \begin{itemize}
+        \item a Physics Engine (bullet, Open Dynamics Engine (ODE))
+        \item a rendering library (OpenGl)
+        \item a Creature that wants to learn how to move itself.
+    \end{itemize}
+    \begin{center}
+        \includegraphics[width=0.4\textwidth]{Figures/four_legged.png} 
+	\end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Modular Structure}
+    A head(white), structural cubical blocks, hinge joints, vertebra...
+    \begin{center}
+        \begin{figure}
+            \includegraphics[width=0.3\textwidth]{Figures/hinge.jpg} 
+            \hspace{1cm} \includegraphics[width=0.3\textwidth]{Figures/vertebra.jpg} 
+
+            \includegraphics[width=0.2\textwidth]{Figures/schema_arbre.png} 
+        \end{figure}
+    \end{center}
+\end{frame}
+ 
+
+\begin{frame}
+    \frametitle{Exemples}
+	\begin{center}
+        \includegraphics[width=0.3\textwidth]{Figures/snake.png} 
+        \hspace{1cm} \includegraphics[width=0.3\textwidth]{Figures/four_legged.png} 
+	\end{center}
+\end{frame}
+
+\subsection{... as a fitness function}
+\begin{frame}
+    \frametitle{The big question}
+	Each articulation has an angle $\alpha_i(t)$ which is a function of time. 
+	The goal is to find these functions to make the structure walk efficiently.
+	Two possibilities : 
+	\begin{itemize}  
+		\item Guess them
+		\item Finding a way of generating them. 
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Choose the parameter to optimize}
+    \begin{itemize}
+        \item distance traveled
+        \item rotation angle
+        \item distance with a certain amount of energy ...
+    \end{itemize}
+   
+\end{frame}    
+
+\section{Different Models}
+\begin{frame} 
+    \frametitle{Represent the angle functions}
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{Figures/models.png} 
+	\end{center}
+\end{frame}
+
+
+\subsection{Fourier Decomposition}
+\begin{frame}
+	\frametitle{Fourier Decomposition to solve the paradigm of Periodicity}
+	
+\[
+	\alpha_i(t) = \sum_{k = 1}^{n} {b_{ki}. sin(kt) } +\sum_{k = -1}^{-n} {b_{ki} . cos(kt) } + b_{0i}
+\]	
+
+Using the results of Fourier, we just have to find the $b_k$ constants for each articulation.
+\end{frame}
+
+\subsection{Central Pattern Generators (CPGs)}
+\begin{frame}
+    \frametitle{Use CPGs to reduce the dimensionality}
+    Central Pattern Generators (CPGs) are neural networks, that can generate oscillation for the control of the muscles of or body. Think of them as a network of coupled oscillator, with the same structure than the creature.
+    \begin{center}
+       \includegraphics[width=0.4\textwidth]{Figures/four_legged.png} 
+        \hspace{1cm} $\rightarrow$ \includegraphics[width=0.4\textwidth]{Figures/cpg.png} 
+	\end{center}
+
+\end{frame}
+
+\subsection{Liquid State Machine (LMS)}
+\begin{frame}
+    \frametitle{Liquid State Machine}
+  \begin{center}
+       \includegraphics[width=0.6\textwidth]{Figures/echo_state.png} 
+	\end{center}
+    $\rightarrow$ only optimize the output weights of the random reservoir that contains "dynamic behavior"
+
+\end{frame}
+
+
+\section{Learning algorithm}
+
+\begin{frame}
+    \frametitle{The difficulty of the task}
+    The fitness function has bad properties...
+    \begin{itemize}
+        \item We do not know any gradient/Hessian matrix...
+        \item The function is not convex, it is likely that there are local minima
+        \item It might not give the same result everytime
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Notations}
+    \begin{itemize}
+        \item $X = \{ X_p, p\in{\{1, ..., q\}}\} $ is a set of $q$ elements (or vectors) of the parameter space ($\mathbf{R}^ n $), where $n$ is the dimension of this space. $X_{p,i}$ is a scalar, and represent the $i$-th coordinate of the $p$-th element of the population.
+        \item $f (\mathbf{R} ^ n \to \mathbf{R})$ is the fitness function we want to minimise.
+        \item $X^{(p)}$ the p first element of the ordered list of element from set $X$ where the order relation is given by $X_i \leq X_j$ iff $f(X_i) \leq f(X_j)$
+        \item iterators $p, q$ are over the population, where $i, j$ are over the coordinate of each element  
+    \end{itemize}
+
+
+\end{frame}
+
+
+
+\subsection{Simplex Method}
+\begin{frame}
+    \frametitle{Downhill method : Nelder-Mead (or simplex method)}
+     DEMO
+\end{frame}
+
+\subsection{Genetic Algorithm}
+\begin{frame}
+    \frametitle{Genetic Algorithms}
+    \begin{center}
+       \includegraphics[width=0.4\textwidth]{Figures/kangarou.jpg} 
+    \end{center}
+    4 steps : Evaluation, Selection, Cross-Over, Mutation
+\end{frame}
+
+\begin{frame}
+
+\begin{algorithm}[H]
+    \caption{Tournament Selection}
+    \begin{algorithmic}
+    \STATE $ p = 0 $
+        \WHILE{$p < q / 2$}
+            \STATE $ X_1 = random element(X) $ 
+            \STATE $ X_2 = random element(X) $
+            \IF{$f(X_1 \leq X_2)$}
+                \STATE $X.eliminate(X_2)$
+            \ELSE
+                \STATE $X.eliminate(X_1)$
+            \ENDIF
+        \ENDWHILE
+    
+    \end{algorithmic}
+\end{algorithm}
+
+\end{frame}
+
+\begin{frame}
+
+    \begin{algorithm}[H]
+    \caption{Cross-Over}
+    \begin{algorithmic}
+    \FOR{$p \in [1: q/2]$}
+            \STATE $X_1 = random element(X)$
+            \STATE $X_2 = random element(X)$
+            \STATE $\lambda = random float([0.5; 1.5])$
+            \STATE $X.add (\lambda * X_1 + ( 1 - \lambda) * X_2)$
+            \STATE $X.add (\lambda * X_2 + ( 1 - \lambda) * X_1)$
+    \ENDFOR
+    \end{algorithmic}
+\end{algorithm}
+\end{frame}
+
+
+
+
+
+\section{Results}
+
+\subsection {Simulation Consistency}
+\begin{frame}
+    \frametitle{Simulation Consitency}
+    Settings are crucial for the simulation to be accurate (otherwise creatures can use the "bugs")
+    \begin{center}
+    \includegraphics[width=0.4\textwidth]{Figures/figure_simulation_consitency.png}
+    \end{center}
+\end{frame}
+
+
+
+\subsection{Learning Curves}
+
+
+\begin{frame}
+    \frametitle{Fourier Decomposition}
+    \begin{center}
+    \includegraphics[width=0.4\textwidth]{Figures/simplex_fourier.png}
+    \hspace{1cm} \includegraphics[width=0.4\textwidth]{Figures/gen_fourier.png}
+
+
+    Simplex \hspace{3cm} Genetic Algorithm
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{CPG}
+    \begin{center}
+    \includegraphics[width=0.4\textwidth]{Figures/cpg_simplex.png}
+    \hspace{1cm} \includegraphics[width=0.4\textwidth]{Figures/cpg_gen.png}
+
+
+    Simplex \hspace{3cm} Genetic Algorithm
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Liquid State Machine}
+    \begin{center}
+    \includegraphics[width=0.4\textwidth]{Figures/esn_simplex.png}
+    \hspace{1cm} \includegraphics[width=0.4\textwidth]{Figures/esn_gen.png}
+
+
+    Simplex \hspace{3cm} Genetic Algorithm
+\end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Videos}
+    \begin{itemize}
+        \item Video of result CPG/GA
+        \item Video of local maximum Nelder Mead/ Fourier Decomposition
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+    Thank you
+    \end{center}
+\end{frame}
+
+%\frame[shrink=30] 
+%{ 
+%    \frametitle{References} 
+%    \bibliographystyle{alpha} 
+%    \bibliography{Bibliography.bib} 
+%}
+
+\end{document}

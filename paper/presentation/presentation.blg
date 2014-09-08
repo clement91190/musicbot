@@ -1,0 +1,52 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: presentation.aux
+The style file: alpha.bst
+Database file #1: Bibliography.bib.bib
+I was expecting a `,' or a `}'---line 135 of file Bibliography.bib.bib
+ :     
+ :     year={2013}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You've used 7 entries,
+            2543 wiz_defined-function locations,
+            605 strings with 5553 characters,
+and the built_in function-call counts, 3059 in all, are:
+= -- 317
+> -- 129
+< -- 6
++ -- 43
+- -- 43
+* -- 198
+:= -- 478
+add.period$ -- 22
+call.type$ -- 7
+change.case$ -- 42
+chr.to.int$ -- 7
+cite$ -- 7
+duplicate$ -- 125
+empty$ -- 231
+format.name$ -- 51
+if$ -- 654
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 5
+newline$ -- 38
+num.names$ -- 21
+pop$ -- 49
+preamble$ -- 1
+purify$ -- 49
+quote$ -- 0
+skip$ -- 121
+stack$ -- 0
+substring$ -- 182
+swap$ -- 37
+text.length$ -- 6
+text.prefix$ -- 2
+top$ -- 0
+type$ -- 56
+warning$ -- 0
+while$ -- 31
+width$ -- 8
+write$ -- 92
+(There was 1 error message)

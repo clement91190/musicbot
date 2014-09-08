@@ -1,0 +1,13 @@
+\frametitle{Can you guess what this does ?}
+    \begin{verbatim}
+    def add_creature(m, size):
+        #m is a Metastructure
+        for i in range(size):
+            m.add_block()
+            m.follow_edge()
+            m.add_joint()
+            m.follow_edge()
+
+        m.add_block()
+    \end{verbatim}
+
