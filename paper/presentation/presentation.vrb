@@ -6,7 +6,6 @@
     \begin{verbatim}
 
     def noise(self, vector):
-        #return vector
         cov = 0.01 * np.diag(np.abs(vector))
         res = np.random.multivariate_normal(vector,
         cov)

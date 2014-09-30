@@ -36,7 +36,7 @@
 \end{frame}
 
 
-\section{State of the art and motivation}
+\section{State of the art and Motivation}
 
     \subsection{ State of the Art}
 
@@ -44,13 +44,13 @@
     \frametitle{Neural networks}
 
     \begin{itemize} 
-        \item Feed Forward (FFN)
+        \item Feed Forward (FFNN)
         \item Recurrent (RNN)
     \end{itemize}
     \begin{center}
         \begin{figure}
             \includegraphics[width=0.3\textwidth]{Figures/network.jpeg} 
-            \hspace{1cm} \includegraphics[width=0.3\textwidth]{Figures/rnn.png} 
+            \hspace{1cm} \includegraphics[width=0.5\textwidth]{Figures/rnn.png} 
         \end{figure}
     \end{center}
 
@@ -90,7 +90,6 @@
 
 \begin{frame}
     \frametitle{Vanishing gradient and Hessian Free Optimization}
-    Backpropagation = Gradient descent on loss. 
 
     \begin{itemize} 
         \item Deep $\Rightarrow$ vanishing gradient (one more layer = one more Matrix multiplication)
@@ -114,6 +113,7 @@
     \begin{itemize}
         \item Growth of computational power led to think : "The bigger network, the better."
         \item Current RNN structure uses dense Matrix where the brain connections map is sparse. 
+        \item Long Short-Term Memory Networks (LSTM) proposed a specific change in the RNN architecture. 
     \end{itemize}
     
     \begin{itemize}
@@ -129,6 +129,7 @@
 \begin{frame}
     \frametitle{Experiment:}
     Pretrained RNN on a memory problem: 100 timesteps long sequences of bits. 
+    \newline
     Loss: Cross correlation of the output of the last timestep and the first input (Remember the first input)
     \begin{center}
          \begin{figure}
@@ -145,7 +146,7 @@
    Goal : Find a way of plotting the RNN.
     \begin{itemize}
         \item use weights as spring.
-        \item spectral analyses of Laplacian matrix.
+        \item spectral analysis of Laplacian matrix.
     \end{itemize}
     \begin{center}
          \begin{figure}
@@ -158,10 +159,10 @@
 
 \begin{frame}
     \frametitle{Question : Are all the neurons useful?}
-    We remove one neuron at a time (by replacing its input/output weights in Whh with 0) and test the network on dataset. 
+    We remove one neuron at a time (by replacing its input/output weights in Whh with 0) and test the network on a dataset. 
     \begin{center}
          \begin{figure}
-            \includegraphics[width=0.5\textwidth]{Figures/error_test_set_remove_neuron.png} 
+            \includegraphics[width=0.45\textwidth]{Figures/error_test_set_remove_neuron.png} 
         \end{figure}
     \end{center}
     Results : Neurons importance is very unequal (though the sum of absolute value of the weights is very constrained) 
@@ -174,12 +175,12 @@
     We compare the "worth" with different metrics
     
     \begin{itemize}
-        \item M1 : The sum of the absolute value of the in an out weights on the hidden-to-hidden connection
-        \item M2 : The sum of the in an out weights on the hidden-to-hidden connection
-        \item M3 : The absolute value of the sum of the in an out weights on the hidden-to-hidden connection
+        \item M1 : The sum of the absolute value of the in and out weights on the hidden-to-hidden connections
+        \item M2 : The sum of the in and out weights on the hidden-to-hidden connections
+        \item M3 : The absolute value of the sum of the in and out weights on the hidden-to-hidden connections
         \item M4 : The clustering index
         \item M5 : The absolute value of the ouput weights ( of the hidden to output matrix) 
-        \item M6 : The absolute value of the input weights ( of the hidden to output matrix) 
+        \item M6 : The absolute value of the input weights ( of the input to hidden matrix) 
         \item M7 : The sum of the two previous metrics.
     \end{itemize}
 
@@ -188,23 +189,17 @@
 
 \begin{frame}
     \frametitle{Comparaison with classical metrics}
-    Backpropagation = Gradient descent on loss. 
-
-    \begin{itemize} 
-        \item use of the derivative of composition product to go back layer after layer...
-        \item backpropagation through time for RNNs
-    \end{itemize}
     \begin{center}
          \begin{figure}
-            \includegraphics[width=0.2\textwidth]{Figures/m1.png}
-            \hspace{0.1cm} \includegraphics[width=0.2\textwidth]{Figures/m2.png}
-            \hspace{0.1cm} \includegraphics[width=0.2\textwidth]{Figures/m3.png}
-            \hspace{0.1cm} \includegraphics[width=0.2\textwidth]{Figures/m4.png}
+            \includegraphics[width=0.25\textwidth]{Figures/m1.png}
+            \hspace{0.1cm} \includegraphics[width=0.25\textwidth]{Figures/m2.png}
+            \hspace{0.1cm} \includegraphics[width=0.25\textwidth]{Figures/m3.png}
+            \hspace{0.1cm} \includegraphics[width=0.25\textwidth]{Figures/m4.png}
         \end{figure}
         \begin{figure}
-            \includegraphics[width=0.2\textwidth]{Figures/m5.png}
-            \hspace{1cm} \includegraphics[width=0.2\textwidth]{Figures/m6.png}
-            \hspace{1cm} \includegraphics[width=0.2\textwidth]{Figures/m7.png}
+            \includegraphics[width=0.25\textwidth]{Figures/m5.png}
+            \hspace{1cm} \includegraphics[width=0.25\textwidth]{Figures/m6.png}
+            \hspace{1cm} \includegraphics[width=0.25\textwidth]{Figures/m7.png}
         \end{figure}
     \end{center}
 
@@ -242,34 +237,15 @@ Results: None of the natural metrics have satisfying results which proves that t
     We perform the same experiment on each connection
     \begin{center}
         \begin{figure}
-            \includegraphics[width=0.6\textwidth]{Figures/score_worth_connection.png} 
+            \includegraphics[width=0.5\textwidth]{Figures/score_worth_connection.png} 
         \end{figure}
     \end{center}
     Result : Many connections could be removed without influencing the results of the network -> confirm the intuition of using sparse matrix.
 
 \end{frame}
 
-
 \begin{frame}
-    \frametitle{Training : Backpropagation}
-    Backpropagation = Gradient descent on loss. 
-
-    \begin{itemize} 
-        \item use of the derivative of composition product to go back layer after layer...
-        \item backpropagation through time for RNNs
-    \end{itemize}
-    \begin{center}
-        \begin{figure}
-            \includegraphics[width=0.4\textwidth]{Figures/network.jpeg} 
-        \end{figure}
-    \end{center}
-
-\end{frame}
-
-
-
-\begin{frame}
-    \frametitle{Correlation weight and worth of a connection}
+    \frametitle{Correlation between the weight and "worth" of a connection}
     We sort the connections based on the absolute value of the weight and display in blue their "worth" based on the previous experiment.
     \begin{center}
         \begin{figure}
@@ -282,7 +258,7 @@ Results: None of the natural metrics have satisfying results which proves that t
 
    
 
-\section{Self Growing Recurrent Neural Networks}
+\section{Self Growing Recurrent Neural Networks (SGRNN)}
  
 \begin{frame}
     \frametitle{Goals}
@@ -291,14 +267,14 @@ Results: None of the natural metrics have satisfying results which proves that t
           \item Propose smooth modification of the architecture.
     \end{itemize}
 
-    In this Chapter, we introduce Self-Growing Recurrent Neural Network (SGRNN), which is a Recurrent Neural Network that change its architecture as well as its weights during learning.
+    In this Section, we introduce Self-Growing Recurrent Neural Network (SGRNN), which is a Recurrent Neural Network that change its architecture as well as its weights during learning.
 
 \end{frame}
 
 
 \begin{frame}
     \frametitle{Learning algorithm}
-    \begin{algorithm}
+    \begin{algorithm}[H]
         \caption{Learning algorithm}
         \begin{algorithmic}
         \STATE $ weightsInit() $
@@ -373,7 +349,6 @@ def insert_in_model(self, i):
     \begin{verbatim}
 
     def noise(self, vector):
-        #return vector
         cov = 0.01 * np.diag(np.abs(vector))
         res = np.random.multivariate_normal(vector,
         cov)
@@ -384,7 +359,7 @@ def insert_in_model(self, i):
 
 \end{frame}
 
-\section{Application on natural problem : music generation}
+\section{Application on a natural problem : Music Generation}
 
 
 \begin{frame}
@@ -403,9 +378,15 @@ def insert_in_model(self, i):
     \frametitle{Result and demo}
     We compare the learning curves of classical RNN with fixed number of neurons (20 (green and 50 (red)) and the SGRNN (blue)
         \begin{figure}
-                \includegraphics[width=0.4\textwidth]{Figures/sgrnn_training.png} 
+            \includegraphics[width=0.6\textwidth]{Figures/sgrnn_training.png} 
         \end{figure}   
-    Demo : 
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Result and demo}
+ 
+    Demo : We use the network to recursively predict the next timestep. 
     \begin{itemize}
         \item sample before training
         \item sample after training
@@ -415,6 +396,9 @@ def insert_in_model(self, i):
 \begin{frame}
     \begin{center}
     Thank you
+    \begin{figure}
+            \includegraphics[width=0.1\textwidth]{Figures/Logo.jpg} 
+        \end{figure}   
     \end{center}
 \end{frame}
 

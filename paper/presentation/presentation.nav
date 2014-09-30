@@ -3,7 +3,7 @@
 \headcommand {\beamer@framepages {1}{1}}
 \headcommand {\slideentry {0}{0}{2}{2/2}{}{0}}
 \headcommand {\beamer@framepages {2}{2}}
-\headcommand {\sectionentry {1}{State of the art and motivation}{3}{State of the art and motivation}{0}}
+\headcommand {\sectionentry {1}{State of the art and Motivation}{3}{State of the art and Motivation}{0}}
 \headcommand {\beamer@sectionpages {1}{2}}
 \headcommand {\beamer@subsectionpages {1}{2}}
 \headcommand {\slideentry {1}{0}{3}{3/3}{}{0}}
@@ -41,11 +41,11 @@
 \headcommand {\beamer@framepages {16}{16}}
 \headcommand {\slideentry {2}{0}{10}{17/17}{}{0}}
 \headcommand {\beamer@framepages {17}{17}}
-\headcommand {\slideentry {2}{0}{11}{18/18}{}{0}}
+\headcommand {\sectionentry {3}{Self Growing Recurrent Neural Networks (SGRNN)}{18}{Self Growing Recurrent Neural Networks (SGRNN)}{0}}
+\headcommand {\beamer@sectionpages {9}{17}}
+\headcommand {\beamer@subsectionpages {9}{17}}
+\headcommand {\slideentry {3}{0}{11}{18/18}{}{0}}
 \headcommand {\beamer@framepages {18}{18}}
-\headcommand {\sectionentry {3}{Self Growing Recurrent Neural Networks}{19}{Self Growing Recurrent Neural Networks}{0}}
-\headcommand {\beamer@sectionpages {9}{18}}
-\headcommand {\beamer@subsectionpages {9}{18}}
 \headcommand {\slideentry {3}{0}{12}{19/19}{}{0}}
 \headcommand {\beamer@framepages {19}{19}}
 \headcommand {\slideentry {3}{0}{13}{20/20}{}{0}}
@@ -58,11 +58,11 @@
 \headcommand {\beamer@framepages {23}{23}}
 \headcommand {\slideentry {3}{0}{17}{24/24}{}{0}}
 \headcommand {\beamer@framepages {24}{24}}
-\headcommand {\slideentry {3}{0}{18}{25/25}{}{0}}
+\headcommand {\sectionentry {4}{Application on a natural problem : Music Generation}{25}{Application on a natural problem : Music Generation}{0}}
+\headcommand {\beamer@sectionpages {18}{24}}
+\headcommand {\beamer@subsectionpages {18}{24}}
+\headcommand {\slideentry {4}{0}{18}{25/25}{}{0}}
 \headcommand {\beamer@framepages {25}{25}}
-\headcommand {\sectionentry {4}{Application on natural problem : music generation}{26}{Application on natural problem : music generation}{0}}
-\headcommand {\beamer@sectionpages {19}{25}}
-\headcommand {\beamer@subsectionpages {19}{25}}
 \headcommand {\slideentry {4}{0}{19}{26/26}{}{0}}
 \headcommand {\beamer@framepages {26}{26}}
 \headcommand {\slideentry {4}{0}{20}{27/27}{}{0}}
@@ -72,7 +72,7 @@
 \headcommand {\slideentry {4}{0}{22}{29/29}{}{0}}
 \headcommand {\beamer@framepages {29}{29}}
 \headcommand {\beamer@partpages {1}{29}}
-\headcommand {\beamer@subsectionpages {26}{29}}
-\headcommand {\beamer@sectionpages {26}{29}}
+\headcommand {\beamer@subsectionpages {25}{29}}
+\headcommand {\beamer@sectionpages {25}{29}}
 \headcommand {\beamer@documentpages {29}}
 \headcommand {\def \inserttotalframenumber {29}}

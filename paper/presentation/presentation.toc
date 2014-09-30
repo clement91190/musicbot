@@ -1,7 +1,7 @@
 \beamer@endinputifotherversion {3.24pt}
-\beamer@sectionintoc {1}{State of the art and motivation}{3}{0}{1}
+\beamer@sectionintoc {1}{State of the art and Motivation}{3}{0}{1}
 \beamer@subsectionintoc {1}{1}{ State of the Art}{4}{0}{1}
 \beamer@subsectionintoc {1}{2}{Motivation}{8}{0}{1}
 \beamer@sectionintoc {2}{Study of RNNs}{9}{0}{2}
-\beamer@sectionintoc {3}{Self Growing Recurrent Neural Networks}{19}{0}{3}
-\beamer@sectionintoc {4}{Application on natural problem : music generation}{26}{0}{4}
+\beamer@sectionintoc {3}{Self Growing Recurrent Neural Networks (SGRNN)}{18}{0}{3}
+\beamer@sectionintoc {4}{Application on a natural problem : Music Generation}{25}{0}{4}
